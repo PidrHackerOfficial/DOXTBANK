@@ -2,8 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
 <title>DOXT Bank</title>
 
@@ -14,48 +13,43 @@
 }
 
 :root{
-    --bg:#090a0c;
-    --surface:#131519;
-    --surface2:#1a1d22;
-    --border:#292d34;
+    --bg:#08090b;
+    --panel:#111318;
+    --panel2:#171a20;
+    --border:#252a33;
     --text:#fff;
-    --muted:#8d949f;
-    --accent:#6d9cff;
-    --accent2:#477df0;
-    --green:#55d98a;
-    --red:#ff6565;
-}
-
-html,body{
-    margin:0;
-    width:100%;
-    min-height:100%;
-    background:var(--bg);
-    color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
+    --muted:#8b919d;
+    --accent:#5b8cff;
+    --accent2:#7aa0ff;
+    --green:#48d597;
+    --red:#ff6464;
 }
 
 body{
-    overflow-x:hidden;
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
 
-button,
-input{
+button,input{
     font:inherit;
 }
 
 button{
-    border:0;
     cursor:pointer;
 }
 
-input{
-    outline:none;
+.hidden{
+    display:none!important;
 }
 
-/* AUTH */
+/* =========================
+   AUTH
+========================= */
 
-.auth{
+#auth{
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -63,22 +57,22 @@ input{
     padding:20px;
 }
 
-.authBox{
+.auth-box{
     width:100%;
-    max-width:430px;
-    background:var(--surface);
+    max-width:450px;
+    background:var(--panel);
     border:1px solid var(--border);
     border-radius:24px;
-    padding:26px;
-    box-shadow:0 20px 60px rgba(0,0,0,.4);
+    padding:25px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
 .logo{
     text-align:center;
     font-size:32px;
-    font-weight:800;
+    font-weight:900;
     letter-spacing:-1px;
-    margin-bottom:5px;
+    margin-bottom:7px;
 }
 
 .logo span{
@@ -91,14 +85,20 @@ input{
     margin-bottom:25px;
 }
 
+.auth-title{
+    font-size:21px;
+    font-weight:800;
+    margin-bottom:15px;
+}
+
 .input{
     width:100%;
-    height:52px;
-    background:var(--surface2);
-    color:white;
+    background:#0c0e12;
     border:1px solid var(--border);
-    border-radius:14px;
-    padding:0 16px;
+    color:white;
+    padding:14px;
+    border-radius:13px;
+    outline:none;
     margin-bottom:12px;
 }
 
@@ -106,251 +106,288 @@ input{
     border-color:var(--accent);
 }
 
-.primary{
+.btn{
     width:100%;
-    min-height:52px;
-    background:var(--accent);
+    border:0;
+    padding:14px;
+    border-radius:13px;
+    font-weight:800;
     color:white;
-    border-radius:14px;
-    font-weight:700;
+    background:var(--accent);
     margin-top:5px;
 }
 
-.primary:active{
+.btn:active{
     transform:scale(.98);
 }
 
-.secondary{
-    width:100%;
-    min-height:50px;
-    background:var(--surface2);
-    color:white;
-    border:1px solid var(--border);
-    border-radius:14px;
-    margin-top:10px;
+.btn.secondary{
+    background:#20242c;
 }
 
-.authSwitch{
+.auth-switch{
     text-align:center;
     color:var(--muted);
-    margin-top:20px;
+    margin-top:17px;
     font-size:14px;
 }
 
-.link{
-    color:var(--accent);
+.auth-switch span{
+    color:var(--accent2);
     cursor:pointer;
+    font-weight:700;
 }
 
-/* TOKEN */
+/* SECRET BOX */
 
-.tokenBox{
-    display:none;
-}
-
-.token{
-    margin:18px 0;
-    padding:15px;
-    background:#08090b;
+.secret-box{
+    background:#0b0d11;
     border:1px solid var(--border);
     border-radius:14px;
-    word-break:break-all;
-    font-family:monospace;
-    font-size:13px;
-    line-height:1.5;
+    padding:14px;
+    margin-top:15px;
 }
 
-/* APP */
+.secret-item{
+    margin-bottom:15px;
+}
 
-.app{
-    display:none;
+.secret-item:last-child{
+    margin-bottom:0;
+}
+
+.secret-label{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.secret-value{
+    background:#08090b;
+    border:1px solid #20242c;
+    border-radius:10px;
+    padding:11px;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.5;
+    word-break:break-all;
+}
+
+.secret-copy{
+    width:100%;
+    border:0;
+    background:#20242c;
+    color:white;
+    border-radius:10px;
+    padding:10px;
+    margin-top:7px;
+    font-size:12px;
+}
+
+.warning{
+    color:#d6a84f;
+    background:rgba(214,168,79,.08);
+    border:1px solid rgba(214,168,79,.2);
+    border-radius:11px;
+    padding:11px;
+    font-size:12px;
+    line-height:1.45;
+    margin-top:12px;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
     min-height:100vh;
-    padding-bottom:105px;
+    padding-bottom:90px;
 }
 
 .topbar{
-    height:68px;
+    height:65px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 18px;
     border-bottom:1px solid var(--border);
-    background:rgba(9,10,12,.9);
+    background:rgba(8,9,11,.9);
     position:sticky;
     top:0;
     z-index:20;
     backdrop-filter:blur(15px);
 }
 
-.topLogo{
-    font-size:21px;
-    font-weight:800;
+.top-logo{
+    font-size:22px;
+    font-weight:900;
 }
 
-.topLogo span{
+.top-logo span{
     color:var(--accent);
 }
 
 .logout{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    background:var(--surface2);
-    color:white;
+    background:#1b1e25;
     border:1px solid var(--border);
+    color:#bbb;
+    padding:9px 12px;
+    border-radius:10px;
+    font-size:12px;
+}
+
+.content{
+    max-width:850px;
+    margin:auto;
+    padding:20px;
 }
 
 .page{
     display:none;
-    padding:18px;
-    max-width:700px;
-    margin:auto;
 }
 
 .page.active{
     display:block;
 }
 
-.welcome{
-    margin:8px 0 18px;
-}
+/* =========================
+   CARD
+========================= */
 
-.welcome small{
-    color:var(--muted);
-}
-
-.welcome h1{
-    margin:4px 0 0;
-    font-size:28px;
-}
-
-/* CARD */
-
-.bankCard{
+.bank-card{
     position:relative;
     overflow:hidden;
+    background:linear-gradient(135deg,#1c2d55,#0e1422);
+    border:1px solid #30456e;
     min-height:205px;
-    border-radius:25px;
-    padding:22px;
-    background:
-        radial-gradient(circle at 90% 10%,rgba(255,255,255,.15),transparent 35%),
-        linear-gradient(135deg,#244b9e,#16295b 55%,#0c1530);
-    box-shadow:0 18px 50px rgba(0,0,0,.35);
+    border-radius:24px;
+    padding:23px;
+    margin-bottom:18px;
 }
 
-.bankCard:after{
+.bank-card:after{
     content:"";
     position:absolute;
-    width:180px;
-    height:180px;
+    width:190px;
+    height:190px;
     border-radius:50%;
-    background:rgba(255,255,255,.06);
+    background:rgba(255,255,255,.04);
     right:-70px;
-    bottom:-70px;
+    top:-65px;
 }
 
-.cardBrand{
-    position:relative;
-    z-index:2;
-    display:flex;
-    justify-content:space-between;
-    font-weight:800;
+.card-brand{
+    font-size:16px;
+    font-weight:900;
+    letter-spacing:2px;
 }
 
-.cardBalanceLabel{
-    position:relative;
-    z-index:2;
-    color:#d9e3ff;
-    margin-top:32px;
-    font-size:13px;
+.card-balance{
+    margin-top:38px;
 }
 
-.cardBalance{
-    position:relative;
-    z-index:2;
-    font-size:34px;
-    font-weight:800;
+.card-balance-label{
+    font-size:12px;
+    opacity:.65;
+}
+
+.card-balance-value{
+    font-size:32px;
+    font-weight:900;
     margin-top:5px;
 }
 
-.cardNumber{
-    position:relative;
-    z-index:2;
-    margin-top:26px;
+.card-number{
+    position:absolute;
+    left:23px;
+    bottom:21px;
+    font-family:monospace;
     letter-spacing:3px;
-    font-family:monospace;
+    opacity:.8;
 }
 
-/* PANELS */
-
-.panel{
-    margin-top:15px;
-    padding:18px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:20px;
-}
-
-.panelTitle{
-    font-weight:700;
-    margin-bottom:14px;
-}
-
-.wallet{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.walletAddress{
-    flex:1;
-    min-width:0;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    font-family:monospace;
-    color:#d8dde6;
-}
-
-.copy{
-    width:42px;
-    height:42px;
-    border-radius:12px;
-    background:var(--surface2);
-    color:white;
-}
+/* =========================
+   STATS
+========================= */
 
 .stats{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
+    margin-bottom:18px;
 }
 
 .stat{
-    padding:17px;
-    background:var(--surface);
+    background:var(--panel);
     border:1px solid var(--border);
-    border-radius:18px;
+    border-radius:17px;
+    padding:16px;
 }
 
-.statLabel{
+.stat-label{
     color:var(--muted);
+    font-size:12px;
+    margin-bottom:7px;
+}
+
+.stat-value{
+    font-size:18px;
+    font-weight:800;
+    word-break:break-all;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:19px;
+    padding:17px;
+    margin-bottom:16px;
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:13px;
+}
+
+.wallet-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.wallet{
+    flex:1;
+    background:#0b0d11;
+    border:1px solid var(--border);
+    padding:12px;
+    border-radius:11px;
+    font-family:monospace;
     font-size:13px;
+    overflow:hidden;
 }
 
-.statValue{
-    margin-top:7px;
-    font-size:21px;
-    font-weight:700;
+.copy-btn{
+    border:0;
+    background:#20242c;
+    color:white;
+    border-radius:11px;
+    padding:12px;
 }
 
-/* TRANSACTIONS */
+/* =========================
+   TRANSACTIONS
+========================= */
 
 .transaction{
     display:flex;
-    align-items:center;
+    justify-content:space-between;
     gap:12px;
-    padding:14px 0;
+    padding:13px 0;
     border-bottom:1px solid var(--border);
 }
 
@@ -358,272 +395,261 @@ input{
     border-bottom:0;
 }
 
-.txIcon{
-    width:43px;
-    height:43px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:var(--surface2);
-    font-size:20px;
-}
-
-.txInfo{
-    flex:1;
+.tx-main{
     min-width:0;
 }
 
-.txTitle{
+.tx-title{
     font-weight:700;
+    font-size:14px;
 }
 
-.txSub{
-    margin-top:4px;
+.tx-sub{
     color:var(--muted);
-    font-size:12px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    font-size:11px;
+    margin-top:4px;
+    word-break:break-all;
 }
 
-.txAmount{
-    font-weight:800;
+.tx-amount{
+    font-weight:900;
     white-space:nowrap;
 }
 
-.txAmount.in{
+.tx-amount.in{
     color:var(--green);
 }
 
-.txAmount.out{
+.tx-amount.out{
     color:var(--red);
 }
 
 .empty{
-    color:var(--muted);
     text-align:center;
-    padding:25px 10px;
-}
-
-/* TRANSFER */
-
-.amountInput{
-    font-size:24px;
-    font-weight:700;
-    text-align:center;
-}
-
-.transferHint{
     color:var(--muted);
-    font-size:13px;
-    margin:-3px 0 12px;
+    padding:20px 5px;
 }
 
-/* CLICKER */
+/* =========================
+   TRANSFER
+========================= */
+
+.transfer-balance{
+    font-size:14px;
+    color:var(--muted);
+    margin-bottom:17px;
+}
+
+.transfer-balance strong{
+    color:white;
+}
+
+/* =========================
+   CLICKER
+========================= */
 
 .clicker{
     text-align:center;
 }
 
-.clickerBalance{
-    font-size:43px;
-    font-weight:800;
-    margin:15px 0 4px;
+.clicker-balance{
+    font-size:36px;
+    font-weight:900;
+    margin:15px 0 5px;
 }
 
-.clickerLabel{
+.clicker-count{
     color:var(--muted);
+    font-size:14px;
 }
 
-.clickButton{
-    width:min(260px,75vw);
-    height:min(260px,75vw);
+.click-button{
+    width:min(270px,80vw);
+    height:min(270px,80vw);
     border-radius:50%;
-    margin:35px auto 25px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(circle at 35% 25%,#86aaff,#4778e8);
+    border:8px solid #263c72;
+    background:radial-gradient(circle at 35% 30%,#719aff,#3157bd);
     color:white;
-    box-shadow:
-        0 20px 50px rgba(40,90,200,.3),
-        inset 0 -15px 30px rgba(0,0,0,.15);
+    font-size:28px;
+    font-weight:900;
+    margin:35px auto 15px;
+    display:block;
+    box-shadow:0 15px 45px rgba(40,80,180,.25);
     user-select:none;
     touch-action:manipulation;
 }
 
-.clickButton:active{
-    transform:scale(.94);
+.click-button:active{
+    transform:scale(.95);
 }
 
-.clickButton strong{
-    font-size:55px;
-}
-
-.clickButton span{
-    margin-top:4px;
-    font-size:14px;
-    opacity:.8;
-}
-
-.clickerStatus{
-    min-height:20px;
+.click-hint{
     color:var(--muted);
     font-size:13px;
 }
 
-/* BOTTOM */
+/* =========================
+   PERSONAL KEY
+========================= */
 
-.tabBar{
-    position:fixed;
-    z-index:50;
-    left:50%;
-    bottom:12px;
-    transform:translateX(-50%);
-    width:calc(100% - 24px);
-    max-width:620px;
-    height:72px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    padding:7px;
-    gap:5px;
-    background:rgba(19,21,25,.94);
+.key-display{
+    background:#0b0d11;
     border:1px solid var(--border);
-    border-radius:22px;
-    backdrop-filter:blur(20px);
-    box-shadow:0 15px 40px rgba(0,0,0,.45);
+    border-radius:13px;
+    padding:13px;
+    font-family:monospace;
+    font-size:12px;
+    word-break:break-all;
+    line-height:1.5;
 }
 
-.tab{
-    border-radius:16px;
-    background:transparent;
-    color:var(--muted);
+/* =========================
+   NAV
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:75px;
+    background:rgba(13,15,19,.95);
+    border-top:1px solid var(--border);
+    backdrop-filter:blur(18px);
     display:flex;
-    flex-direction:column;
     justify-content:center;
-    align-items:center;
-    gap:3px;
+    z-index:50;
 }
 
-.tab.active{
-    color:white;
-    background:var(--surface2);
+.nav-inner{
+    width:100%;
+    max-width:600px;
+    display:flex;
 }
 
-.tabIcon{
-    font-size:20px;
-}
-
-.tabText{
+.nav-btn{
+    flex:1;
+    border:0;
+    background:transparent;
+    color:#737985;
     font-size:11px;
+    font-weight:700;
 }
 
-/* LOADING */
+.nav-btn.active{
+    color:var(--accent2);
+}
 
-.loading{
+.nav-icon{
+    font-size:21px;
+    display:block;
+    margin-bottom:4px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+#toast{
     position:fixed;
-    inset:0;
-    z-index:100;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.7);
-    backdrop-filter:blur(5px);
-}
-
-.loadingBox{
-    padding:22px 28px;
-    border-radius:18px;
-    background:var(--surface);
-    border:1px solid var(--border);
-}
-
-.spinner{
-    width:28px;
-    height:28px;
-    margin:auto;
-    border:3px solid #30343c;
-    border-top-color:var(--accent);
-    border-radius:50%;
-    animation:spin .7s linear infinite;
-}
-
-.loadingText{
-    margin-top:12px;
-    color:var(--muted);
-    font-size:13px;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* TOAST */
-
-.toast{
-    position:fixed;
-    z-index:200;
     left:50%;
-    bottom:96px;
+    bottom:92px;
     transform:translate(-50%,20px);
+    background:#20242c;
+    border:1px solid var(--border);
+    padding:12px 17px;
+    border-radius:13px;
     opacity:0;
     pointer-events:none;
-    padding:13px 17px;
-    background:#20242b;
-    border:1px solid #363c45;
-    border-radius:13px;
-    font-size:14px;
     transition:.25s;
-    max-width:calc(100% - 30px);
+    z-index:100;
+    max-width:90%;
     text-align:center;
+    font-size:13px;
 }
 
-.toast.show{
+#toast.show{
     opacity:1;
     transform:translate(-50%,0);
 }
 
-@media(max-width:420px){
+/* =========================
+   LOADING
+========================= */
 
-    .authBox{
-        padding:20px;
+#loading{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(7px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+}
+
+.loader-box{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    text-align:center;
+}
+
+.spinner{
+    width:32px;
+    height:32px;
+    border:3px solid #333;
+    border-top-color:var(--accent);
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+    margin:auto auto 12px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg)
     }
+}
 
-    .page{
+@media(max-width:500px){
+
+    .content{
         padding:14px;
     }
 
-    .cardBalance{
-        font-size:30px;
+    .bank-card{
+        min-height:190px;
+    }
+
+    .card-balance-value{
+        font-size:27px;
     }
 
     .stats{
-        gap:8px;
+        grid-template-columns:1fr 1fr;
     }
-
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUTH -->
 
-<div class="auth" id="authScreen">
+<!-- =====================================================
+     AUTH
+===================================================== -->
 
-    <div class="authBox">
+<div id="auth">
+
+    <div class="auth-box">
 
         <div class="logo">
-            DOXT<span>Bank</span>
+            DOXT <span>Bank</span>
         </div>
 
         <div class="subtitle">
-            Виртуальная тестовая банковская система
+            Тестовая цифровая банковская система
         </div>
 
 
@@ -631,28 +657,137 @@ input{
 
         <div id="registerForm">
 
+            <div class="auth-title">
+                Создать аккаунт
+            </div>
+
+
             <input
-                id="registerUsername"
+                id="regUsername"
                 class="input"
+                type="text"
                 maxlength="24"
                 placeholder="Имя пользователя"
                 autocomplete="off"
             >
 
+
             <button
-                class="primary"
+                class="btn"
                 onclick="register()"
             >
                 Создать аккаунт
             </button>
 
-            <div class="authSwitch">
-                Уже есть аккаунт?
-                <span
-                    class="link"
+
+            <!-- GENERATED DATA -->
+
+            <div
+                id="registerResult"
+                class="hidden"
+            >
+
+                <div class="secret-box">
+
+
+                    <!-- TOKEN -->
+
+                    <div class="secret-item">
+
+                        <div class="secret-label">
+                            Токен входа
+                        </div>
+
+                        <div
+                            id="newToken"
+                            class="secret-value"
+                        ></div>
+
+                        <button
+                            class="secret-copy"
+                            onclick="copyText(
+                                document.getElementById('newToken').textContent
+                            )"
+                        >
+                            Копировать токен
+                        </button>
+
+                    </div>
+
+
+                    <!-- PERSONAL KEY -->
+
+                    <div class="secret-item">
+
+                        <div class="secret-label">
+                            Личный Ключ
+                        </div>
+
+                        <div
+                            id="newPersonalKey"
+                            class="secret-value"
+                        ></div>
+
+                        <button
+                            class="secret-copy"
+                            onclick="copyText(
+                                document.getElementById('newPersonalKey').textContent
+                            )"
+                        >
+                            Копировать Личный Ключ
+                        </button>
+
+                    </div>
+
+
+                    <!-- WALLET -->
+
+                    <div class="secret-item">
+
+                        <div class="secret-label">
+                            Адрес кошелька
+                        </div>
+
+                        <div
+                            id="newWallet"
+                            class="secret-value"
+                        ></div>
+
+                        <button
+                            class="secret-copy"
+                            onclick="copyText(
+                                document.getElementById('newWallet').textContent
+                            )"
+                        >
+                            Копировать адрес
+                        </button>
+
+                    </div>
+
+
+                    <div class="warning">
+                        Личный Ключ не сохраняется в Firebase.
+                        Если потерять его, расшифровать токен
+                        через этот механизм будет невозможно.
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn"
                     onclick="showLogin()"
                 >
-                    Войти по токену
+                    Перейти ко входу
+                </button>
+
+            </div>
+
+
+            <div class="auth-switch">
+                Уже есть аккаунт?
+                <span onclick="showLogin()">
+                    Войти
                 </span>
             </div>
 
@@ -661,420 +796,424 @@ input{
 
         <!-- LOGIN -->
 
-        <div id="loginForm" style="display:none">
+        <div
+            id="loginForm"
+            class="hidden"
+        >
+
+            <div class="auth-title">
+                Вход
+            </div>
+
 
             <input
                 id="loginToken"
                 class="input"
-                placeholder="Токен сессии"
+                type="text"
+                placeholder="Токен входа"
                 autocomplete="off"
             >
 
+
+            <input
+                id="loginPersonalKey"
+                class="input"
+                type="text"
+                placeholder="Личный Ключ"
+                autocomplete="off"
+            >
+
+
             <button
-                class="primary"
-                onclick="loginByToken()"
+                class="btn"
+                onclick="loginByTokenAndKey()"
             >
                 Войти
             </button>
 
-            <div class="authSwitch">
+
+            <div class="auth-switch">
                 Нет аккаунта?
-                <span
-                    class="link"
-                    onclick="showRegister()"
-                >
-                    Зарегистрироваться
+                <span onclick="showRegister()">
+                    Регистрация
                 </span>
             </div>
 
         </div>
 
-
-        <!-- TOKEN -->
-
-        <div class="tokenBox" id="tokenBox">
-
-            <div class="subtitle">
-                Аккаунт создан
-            </div>
-
-            <div class="token" id="newToken"></div>
-
-            <button
-                class="secondary"
-                onclick="copyToken()"
-            >
-                Скопировать токен
-            </button>
-
-            <button
-                class="primary"
-                onclick="continueAfterRegister()"
-            >
-                Продолжить
-            </button>
-
-        </div>
-
     </div>
 
 </div>
 
 
-<!-- APP -->
+<!-- =====================================================
+     APP
+===================================================== -->
 
-<div class="app" id="app">
+<div
+    id="app"
+    class="hidden"
+>
 
     <div class="topbar">
 
-        <div class="topLogo">
-            DOXT<span>Bank</span>
+        <div class="top-logo">
+            DOXT <span>Bank</span>
         </div>
 
         <button
             class="logout"
             onclick="logout()"
-            title="Выйти"
         >
-            ⎋
+            Выйти
         </button>
 
     </div>
 
 
-    <!-- HOME -->
-
-    <section
-        class="page active"
-        id="page-home"
-    >
-
-        <div class="welcome">
-
-            <small>Добро пожаловать</small>
-
-            <h1 id="welcomeName">
-                Пользователь
-            </h1>
-
-        </div>
+    <main class="content">
 
 
-        <div class="bankCard">
+        <!-- HOME -->
 
-            <div class="cardBrand">
+        <section
+            id="page-home"
+            class="page active"
+        >
 
-                <span>DOXT BANK</span>
-                <span>DOXT</span>
+            <div class="bank-card">
 
-            </div>
-
-            <div class="cardBalanceLabel">
-                Баланс
-            </div>
-
-            <div
-                class="cardBalance"
-                id="balance"
-            >
-                0 DOXT
-            </div>
-
-            <div
-                class="cardNumber"
-                id="cardNumber"
-            >
-                •••• •••• •••• ••••
-            </div>
-
-        </div>
-
-
-        <div class="panel">
-
-            <div class="panelTitle">
-                Ваш кошелёк
-            </div>
-
-            <div class="wallet">
-
-                <div
-                    class="walletAddress"
-                    id="walletAddress"
-                >
-                    Загрузка...
+                <div class="card-brand">
+                    DOXT BANK
                 </div>
 
-                <button
-                    class="copy"
-                    onclick="copyWallet()"
+                <div class="card-balance">
+
+                    <div class="card-balance-label">
+                        Баланс
+                    </div>
+
+                    <div
+                        id="balance"
+                        class="card-balance-value"
+                    >
+                        0 DOXT
+                    </div>
+
+                </div>
+
+                <div
+                    id="cardNumber"
+                    class="card-number"
                 >
-                    ⧉
+                    0000 0000 0000 0000
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <div class="stat-label">
+                        Пользователь
+                    </div>
+
+                    <div
+                        id="username"
+                        class="stat-value"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-label">
+                        Баланс
+                    </div>
+
+                    <div
+                        id="balanceStat"
+                        class="stat-value"
+                    >
+                        0 DOXT
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WALLET -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Адрес кошелька
+                </div>
+
+                <div class="wallet-row">
+
+                    <div
+                        id="walletAddress"
+                        class="wallet"
+                    >
+                        —
+                    </div>
+
+                    <button
+                        class="copy-btn"
+                        onclick="copyText(account?.wallet || '')"
+                    >
+                        Копировать
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PERSONAL KEY -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Личный Ключ
+                </div>
+
+                <div class="warning">
+                    Ключ используется для расшифровки
+                    токена входа. Он не загружается
+                    в Firebase и хранится только у владельца.
+                </div>
+
+                <div
+                    id="personalKeyStatus"
+                    style="
+                        margin-top:12px;
+                        color:var(--green);
+                        font-size:13px;
+                    "
+                >
+                    Личный Ключ присутствует в текущей сессии
+                </div>
+
+            </div>
+
+
+            <!-- TRANSACTIONS -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    История операций
+                </div>
+
+                <div id="transactions">
+
+                    <div class="empty">
+                        Загрузка...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRANSFER -->
+
+        <section
+            id="page-transfer"
+            class="page"
+        >
+
+            <div class="section">
+
+                <div class="section-title">
+                    Перевод DOXT
+                </div>
+
+                <div class="transfer-balance">
+
+                    Доступно:
+
+                    <strong id="transferBalance">
+                        0 DOXT
+                    </strong>
+
+                </div>
+
+
+                <input
+                    id="receiverWallet"
+                    class="input"
+                    inputmode="numeric"
+                    maxlength="12"
+                    placeholder="12-значный адрес получателя"
+                >
+
+
+                <input
+                    id="transferAmount"
+                    class="input"
+                    type="number"
+                    min="1"
+                    step="1"
+                    placeholder="Количество DOXT"
+                >
+
+
+                <button
+                    class="btn"
+                    onclick="sendMoney()"
+                >
+                    Отправить DOXT
                 </button>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <div class="stats">
+        <!-- CLICKER -->
 
-            <div class="stat">
+        <section
+            id="page-clicker"
+            class="page"
+        >
 
-                <div class="statLabel">
-                    Баланс
+            <div class="section clicker">
+
+                <div class="section-title">
+                    DOXT Clicker
                 </div>
 
+
                 <div
-                    class="statValue"
-                    id="balanceStat"
+                    id="clickerBalance"
+                    class="clicker-balance"
                 >
                     0 DOXT
                 </div>
 
-            </div>
 
+                <div class="clicker-count">
 
-            <div class="stat">
+                    Кликов:
 
-                <div class="statLabel">
-                    Кликов
+                    <span id="clickCount">
+                        0
+                    </span>
+
                 </div>
 
-                <div
-                    class="statValue"
-                    id="clickStat"
+
+                <button
+                    id="clickButton"
+                    class="click-button"
+                    onclick="clickDOXT()"
                 >
-                    0
+                    +1 DOXT
+                </button>
+
+
+                <div class="click-hint">
+                    Баланс синхронизируется с Firebase.
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
-
-        <div class="panel">
-
-            <div class="panelTitle">
-                История операций
-            </div>
-
-            <div id="transactions">
-                <div class="empty">
-                    Загрузка...
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- TRANSFER -->
-
-    <section
-        class="page"
-        id="page-transfer"
-    >
-
-        <div class="welcome">
-
-            <small>DOXT</small>
-
-            <h1>
-                Перевод
-            </h1>
-
-        </div>
-
-
-        <div class="panel">
-
-            <div class="panelTitle">
-                Получатель
-            </div>
-
-            <input
-                id="receiverWallet"
-                class="input"
-                maxlength="12"
-                inputmode="numeric"
-                placeholder="12-значный адрес"
-            >
-
-            <div class="transferHint">
-                Введите адрес кошелька получателя
-            </div>
-
-
-            <div class="panelTitle">
-                Сумма
-            </div>
-
-            <input
-                id="transferAmount"
-                class="input amountInput"
-                type="number"
-                min="1"
-                step="1"
-                placeholder="0"
-            >
-
-            <button
-                class="primary"
-                onclick="sendMoney()"
-            >
-                Отправить DOXT
-            </button>
-
-        </div>
-
-
-        <div class="panel">
-
-            <div class="panelTitle">
-                Ваш баланс
-            </div>
-
-            <div
-                id="transferBalance"
-                style="font-size:28px;font-weight:800"
-            >
-                0 DOXT
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CLICKER -->
-
-    <section
-        class="page"
-        id="page-clicker"
-    >
-
-        <div class="welcome">
-
-            <small>DOXT Clicker</small>
-
-            <h1>
-                Кликер
-            </h1>
-
-        </div>
-
-
-        <div class="panel clicker">
-
-            <div class="clickerLabel">
-                Ваш баланс
-            </div>
-
-            <div
-                class="clickerBalance"
-                id="clickerBalance"
-            >
-                0 DOXT
-            </div>
-
-            <button
-                class="clickButton"
-                id="clickButton"
-                onclick="clickDOXT()"
-            >
-                <strong>D</strong>
-                <span>+1 DOXT</span>
-            </button>
-
-            <div
-                class="clickerStatus"
-                id="clickerStatus"
-            >
-                Готов к кликам
-            </div>
-
-        </div>
-
-
-        <div class="panel">
-
-            <div class="panelTitle">
-                Всего кликов
-            </div>
-
-            <div
-                id="clickerTotal"
-                style="font-size:25px;font-weight:800"
-            >
-                0
-            </div>
-
-        </div>
-
-    </section>
+    </main>
 
 
     <!-- NAV -->
 
-    <div class="tabBar">
+    <nav class="bottom-nav">
 
-        <button
-            class="tab active"
-            onclick="switchPage('home',this)"
-        >
-            <span class="tabIcon">⌂</span>
-            <span class="tabText">Главная</span>
-        </button>
+        <div class="nav-inner">
+
+            <button
+                id="nav-home"
+                class="nav-btn active"
+                onclick="switchPage('home')"
+            >
+
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Главная
+
+            </button>
 
 
-        <button
-            class="tab"
-            onclick="switchPage('transfer',this)"
-        >
-            <span class="tabIcon">↗</span>
-            <span class="tabText">Перевод</span>
-        </button>
+            <button
+                id="nav-transfer"
+                class="nav-btn"
+                onclick="switchPage('transfer')"
+            >
+
+                <span class="nav-icon">
+                    ↗
+                </span>
+
+                Перевод
+
+            </button>
 
 
-        <button
-            class="tab"
-            onclick="switchPage('clicker',this)"
-        >
-            <span class="tabIcon">D</span>
-            <span class="tabText">Кликер</span>
-        </button>
+            <button
+                id="nav-clicker"
+                class="nav-btn"
+                onclick="switchPage('clicker')"
+            >
 
-    </div>
+                <span class="nav-icon">
+                    ◉
+                </span>
+
+                Кликер
+
+            </button>
+
+        </div>
+
+    </nav>
 
 </div>
+
+
+<!-- TOAST -->
+
+<div id="toast"></div>
 
 
 <!-- LOADING -->
 
 <div
-    class="loading"
     id="loading"
+    class="hidden"
 >
 
-    <div class="loadingBox">
+    <div class="loader-box">
 
         <div class="spinner"></div>
 
-        <div class="loadingText">
+        <div id="loadingText">
             Загрузка...
         </div>
 
     </div>
 
 </div>
-
-
-<div
-    class="toast"
-    id="toast"
-></div>
 
 
 <script>
@@ -1093,6 +1232,8 @@ const FIREBASE_URL =
 
 let account = null;
 
+let personalKey = null;
+
 let clickCount = 0;
 
 let clickSaveTimer = null;
@@ -1105,11 +1246,9 @@ let clickerWaiting = false;
 
 let realtimeTimer = null;
 
-let toastTimer = null;
-
 
 /* =========================================================
-   FIREBASE REQUEST
+   FIREBASE REST
 ========================================================= */
 
 async function firebaseRequest(
@@ -1119,11 +1258,7 @@ async function firebaseRequest(
 ){
 
     const url =
-        FIREBASE_URL +
-        "/" +
-        path +
-        ".json";
-
+        `${FIREBASE_URL}/${path}.json`;
 
     const options = {
         method,
@@ -1132,7 +1267,6 @@ async function firebaseRequest(
         }
     };
 
-
     if(data !== null){
 
         options.body =
@@ -1140,20 +1274,16 @@ async function firebaseRequest(
 
     }
 
-
     const response =
         await fetch(url,options);
-
 
     if(!response.ok){
 
         throw new Error(
-            "Firebase HTTP " +
-            response.status
+            `Firebase HTTP ${response.status}`
         );
 
     }
-
 
     return await response.json();
 }
@@ -1163,34 +1293,107 @@ async function firebaseRequest(
    UTILS
 ========================================================= */
 
-function randomDigits(length){
+function showLoading(
+    text = "Загрузка..."
+){
 
-    let result = "";
+    document
+        .getElementById("loadingText")
+        .textContent = text;
 
-    for(let i = 0; i < length; i++){
+    document
+        .getElementById("loading")
+        .classList.remove("hidden");
 
-        result +=
+}
+
+
+function hideLoading(){
+
+    document
+        .getElementById("loading")
+        .classList.add("hidden");
+
+}
+
+
+let toastTimer = null;
+
+function toast(message){
+
+    const el =
+        document.getElementById("toast");
+
+    el.textContent = message;
+
+    el.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            el.classList.remove("show");
+
+        },2600);
+
+}
+
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function formatNumber(value){
+
+    return Number(value || 0)
+        .toLocaleString("ru-RU");
+
+}
+
+
+/* =========================================================
+   RANDOM DATA
+========================================================= */
+
+function generateWallet(){
+
+    let wallet = "";
+
+    for(
+        let i = 0;
+        i < 12;
+        i++
+    ){
+
+        wallet +=
             Math.floor(
                 Math.random() * 10
             );
 
     }
 
-    return result;
-}
-
-
-function generateWallet(){
-
-    return randomDigits(12);
+    return wallet;
 
 }
 
 
-function generateToken(){
+/*
+    256 бит случайности.
+*/
+
+function randomHex(bytesCount = 32){
 
     const bytes =
-        new Uint8Array(32);
+        new Uint8Array(bytesCount);
 
     crypto.getRandomValues(bytes);
 
@@ -1205,86 +1408,204 @@ function generateToken(){
 }
 
 
-async function sha256(text){
+function generateToken(){
 
-    const data =
-        new TextEncoder()
-        .encode(text);
+    return randomHex(32);
 
-    const hash =
-        await crypto.subtle
-        .digest(
-            "SHA-256",
-            data
-        );
+}
 
-    return Array.from(
-        new Uint8Array(hash)
-    )
-    .map(
-        b =>
-            b.toString(16)
-             .padStart(2,"0")
-    )
-    .join("");
+
+/*
+    Личный Ключ тоже 256 бит.
+
+    Он НЕ отправляется в Firebase.
+*/
+
+function generatePersonalKey(){
+
+    return randomHex(32);
 
 }
 
 
 /* =========================================================
-   COOKIE
+   XOR ENCRYPTION
 ========================================================= */
 
-function setCookie(
-    name,
-    value,
-    days = 30
-){
+/*
+    Превращаем HEX в массив байтов.
+*/
 
-    const expires =
-        new Date(
-            Date.now() +
-            days * 86400000
-        ).toUTCString();
+function hexToBytes(hex){
 
+    const result = [];
 
-    document.cookie =
-        encodeURIComponent(name) +
-        "=" +
-        encodeURIComponent(value) +
-        "; expires=" +
-        expires +
-        "; path=/; SameSite=Lax";
+    for(
+        let i = 0;
+        i < hex.length;
+        i += 2
+    ){
+
+        result.push(
+            parseInt(
+                hex.substring(i,i+2),
+                16
+            )
+        );
+
+    }
+
+    return new Uint8Array(result);
+
 }
 
 
-function getCookie(name){
+/*
+    Байты -> HEX.
+*/
 
-    const target =
-        encodeURIComponent(name) +
-        "=";
+function bytesToHex(bytes){
+
+    return Array.from(bytes)
+        .map(
+            b =>
+                b.toString(16)
+                 .padStart(2,"0")
+        )
+        .join("");
+
+}
 
 
-    const parts =
+/*
+    XOR.
+
+    Для каждого байта токена
+    используется соответствующий байт ключа.
+
+    Ключ повторяется, если сообщение длиннее ключа.
+*/
+
+function xorBytes(
+    dataBytes,
+    keyBytes
+){
+
+    const result =
+        new Uint8Array(
+            dataBytes.length
+        );
+
+
+    for(
+        let i = 0;
+        i < dataBytes.length;
+        i++
+    ){
+
+        result[i] =
+            dataBytes[i]
+            ^
+            keyBytes[
+                i % keyBytes.length
+            ];
+
+    }
+
+
+    return result;
+
+}
+
+
+/*
+    Шифруем HEX-токен через XOR.
+
+    Возвращаем HEX.
+*/
+
+function encryptToken(
+    token,
+    personalKey
+){
+
+    const tokenBytes =
+        hexToBytes(token);
+
+    const keyBytes =
+        hexToBytes(personalKey);
+
+    const encrypted =
+        xorBytes(
+            tokenBytes,
+            keyBytes
+        );
+
+    return bytesToHex(encrypted);
+
+}
+
+
+/*
+    Расшифровываем encryptedToken.
+*/
+
+function decryptToken(
+    encryptedToken,
+    personalKey
+){
+
+    const encryptedBytes =
+        hexToBytes(encryptedToken);
+
+    const keyBytes =
+        hexToBytes(personalKey);
+
+    const decrypted =
+        xorBytes(
+            encryptedBytes,
+            keyBytes
+        );
+
+    return bytesToHex(decrypted);
+
+}
+
+
+/* =========================================================
+   SESSION COOKIE
+========================================================= */
+
+function setSessionToken(token){
+
+    document.cookie =
+        "doxt_session=" +
+        encodeURIComponent(token) +
+        "; path=/; max-age=31536000; SameSite=Lax";
+
+}
+
+
+function getSessionToken(){
+
+    const cookies =
         document.cookie.split(";");
 
 
     for(
-        let part of parts
+        const cookie of cookies
     ){
 
-        part =
-            part.trim();
+        const [key,...rest] =
+            cookie.trim().split("=");
 
 
         if(
-            part.startsWith(target)
+            key === "doxt_session"
         ){
 
             return decodeURIComponent(
-                part.substring(
-                    target.length
-                )
+                rest.join("=")
             );
 
         }
@@ -1293,123 +1614,44 @@ function getCookie(name){
 
 
     return null;
+
 }
 
 
-function deleteCookie(name){
+function clearSession(){
 
     document.cookie =
-        encodeURIComponent(name) +
-        "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax";
+        "doxt_session=; path=/; max-age=0; SameSite=Lax";
 
 }
 
 
 /* =========================================================
-   UI
-========================================================= */
-
-function showLoading(
-    visible,
-    text = "Загрузка..."
-){
-
-    const loading =
-        document.getElementById(
-            "loading"
-        );
-
-    loading.style.display =
-        visible
-        ? "flex"
-        : "none";
-
-
-    const label =
-        loading.querySelector(
-            ".loadingText"
-        );
-
-    label.textContent = text;
-
-}
-
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
-}
-
-
-/* =========================================================
-   AUTH FORMS
+   AUTH UI
 ========================================================= */
 
 function showLogin(){
 
-    document.getElementById(
-        "registerForm"
-    ).style.display = "none";
+    document
+        .getElementById("registerForm")
+        .classList.add("hidden");
 
-
-    document.getElementById(
-        "loginForm"
-    ).style.display = "block";
-
-
-    document.getElementById(
-        "tokenBox"
-    ).style.display = "none";
+    document
+        .getElementById("loginForm")
+        .classList.remove("hidden");
 
 }
 
 
 function showRegister(){
 
-    document.getElementById(
-        "registerForm"
-    ).style.display = "block";
+    document
+        .getElementById("loginForm")
+        .classList.add("hidden");
 
-
-    document.getElementById(
-        "loginForm"
-    ).style.display = "none";
-
-
-    document.getElementById(
-        "tokenBox"
-    ).style.display = "none";
+    document
+        .getElementById("registerForm")
+        .classList.remove("hidden");
 
 }
 
@@ -1420,19 +1662,16 @@ function showRegister(){
 
 async function register(){
 
-    const input =
-        document.getElementById(
-            "registerUsername"
-        );
-
-
     const username =
-        input.value.trim();
+        document
+        .getElementById("regUsername")
+        .value
+        .trim();
 
 
     if(username.length < 3){
 
-        showToast(
+        toast(
             "Имя должно содержать минимум 3 символа"
         );
 
@@ -1443,7 +1682,7 @@ async function register(){
 
     if(username.length > 24){
 
-        showToast(
+        toast(
             "Имя слишком длинное"
         );
 
@@ -1453,233 +1692,77 @@ async function register(){
 
 
     showLoading(
-        true,
-        "Создание аккаунта..."
+        "Генерация ключей..."
     );
 
 
     try{
 
-        /*
-         * Проверяем, нет ли уже такого username.
-         */
-
         const users =
-            await firebaseRequest(
-                "users"
-            );
+            await firebaseRequest("users");
 
 
-        if(users){
-
-            const exists =
-                Object.values(users)
-                .some(
-                    user =>
-                        String(
-                            user.username || ""
-                        ).toLowerCase()
-                        ===
-                        username.toLowerCase()
-                );
+        const existingUsers =
+            users || {};
 
 
-            if(exists){
+        /* Проверяем имя */
 
-                throw new Error(
+        for(
+            const id in existingUsers
+        ){
+
+            const user =
+                existingUsers[id];
+
+
+            if(
+                user &&
+                String(
+                    user.username || ""
+                ).toLowerCase()
+                ===
+                username.toLowerCase()
+            ){
+
+                toast(
                     "Такое имя уже занято"
                 );
+
+                return;
 
             }
 
         }
 
 
-        const id =
-            crypto.randomUUID
-            ? crypto.randomUUID()
-            : (
-                Date.now() +
-                "_" +
-                randomDigits(8)
-            );
+        /* Генерируем кошелёк */
 
+        let wallet;
 
-        const token =
-            generateToken();
+        let walletExists = true;
 
 
-        const tokenHash =
-            await sha256(token);
+        while(walletExists){
 
+            wallet =
+                generateWallet();
 
-        const wallet =
-            generateWallet();
+            walletExists = false;
 
-
-        const user = {
-
-            username,
-
-            wallet,
-
-            tokenHash,
-
-            balance:0,
-
-            clicks:0,
-
-            createdAt:
-                Date.now()
-
-        };
-
-
-        await firebaseRequest(
-            "users/" + id,
-            "PUT",
-            user
-        );
-
-
-        account = {
-
-            ...user,
-
-            id
-
-        };
-
-
-        setCookie(
-            "doxt_session",
-            token
-        );
-
-
-        document.getElementById(
-            "newToken"
-        ).textContent =
-            token;
-
-
-        document.getElementById(
-            "registerForm"
-        ).style.display = "none";
-
-
-        document.getElementById(
-            "loginForm"
-        ).style.display = "none";
-
-
-        document.getElementById(
-            "tokenBox"
-        ).style.display = "block";
-
-
-        showLoading(false);
-
-
-    }catch(error){
-
-        console.error(error);
-
-        showLoading(false);
-
-        showToast(
-            error.message ||
-            "Ошибка регистрации"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CONTINUE REGISTER
-========================================================= */
-
-async function continueAfterRegister(){
-
-    document.getElementById(
-        "tokenBox"
-    ).style.display = "none";
-
-
-    await openBank();
-
-}
-
-
-/* =========================================================
-   LOGIN BY TOKEN
-========================================================= */
-
-async function loginByToken(){
-
-    const token =
-        document.getElementById(
-            "loginToken"
-        )
-        .value
-        .trim();
-
-
-    if(!token){
-
-        showToast(
-            "Введите токен"
-        );
-
-        return;
-
-    }
-
-
-    showLoading(
-        true,
-        "Проверка токена..."
-    );
-
-
-    try{
-
-        const hash =
-            await sha256(token);
-
-
-        const users =
-            await firebaseRequest(
-                "users"
-            );
-
-
-        let found = null;
-
-
-        if(users){
 
             for(
-                const id in users
+                const id in existingUsers
             ){
 
-                const user =
-                    users[id];
-
-
                 if(
-                    user.tokenHash === hash
+                    existingUsers[id] &&
+                    existingUsers[id].wallet
+                    ===
+                    wallet
                 ){
 
-                    found = {
-
-                        ...user,
-
-                        id
-
-                    };
+                    walletExists = true;
 
                     break;
 
@@ -1690,22 +1773,344 @@ async function loginByToken(){
         }
 
 
-        if(!found){
+        /*
+            Генерируем секреты.
 
-            throw new Error(
-                "Неверный токен"
+            TOKEN:
+                используется для входа.
+
+            PERSONAL KEY:
+                расшифровывает TOKEN.
+        */
+
+        const token =
+            generateToken();
+
+
+        const personalKey =
+            generatePersonalKey();
+
+
+        const encryptedToken =
+            encryptToken(
+                token,
+                personalKey
             );
+
+
+        const id =
+            crypto.randomUUID
+            ? crypto.randomUUID()
+            : Date.now().toString(36)
+              +
+              Math.random()
+                .toString(36)
+                .slice(2);
+
+
+        /*
+            В Firebase теперь НЕ записываем
+            обычный token.
+
+            Записывается encryptedToken.
+
+            personalKey тоже НЕ записывается.
+        */
+
+        const user = {
+
+            username:username,
+
+            wallet:wallet,
+
+            encryptedToken:
+                encryptedToken,
+
+            balance:0,
+
+            clicks:0,
+
+            createdAt:Date.now()
+
+        };
+
+
+        await firebaseRequest(
+            `users/${id}`,
+            "PUT",
+            user
+        );
+
+
+        /*
+            Показываем данные пользователю
+            только один раз после регистрации.
+        */
+
+        document
+            .getElementById("newToken")
+            .textContent = token;
+
+
+        document
+            .getElementById("newPersonalKey")
+            .textContent =
+                personalKey;
+
+
+        document
+            .getElementById("newWallet")
+            .textContent =
+                wallet;
+
+
+        document
+            .getElementById("registerResult")
+            .classList.remove("hidden");
+
+
+        document
+            .getElementById("regUsername")
+            .disabled = true;
+
+
+        toast(
+            "Аккаунт создан"
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        toast(
+            "Ошибка создания аккаунта"
+        );
+
+    }finally{
+
+        hideLoading();
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function loginByTokenAndKey(){
+
+    const token =
+        document
+        .getElementById("loginToken")
+        .value
+        .trim();
+
+
+    const key =
+        document
+        .getElementById("loginPersonalKey")
+        .value
+        .trim();
+
+
+    if(!token){
+
+        toast(
+            "Введите токен"
+        );
+
+        return;
+
+    }
+
+
+    if(!key){
+
+        toast(
+            "Введите Личный Ключ"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !/^[0-9a-fA-F]{64}$/.test(token)
+    ){
+
+        toast(
+            "Некорректный токен"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !/^[0-9a-fA-F]{64}$/.test(key)
+    ){
+
+        toast(
+            "Некорректный Личный Ключ"
+        );
+
+        return;
+
+    }
+
+
+    showLoading(
+        "Расшифровка токена..."
+    );
+
+
+    try{
+
+        const users =
+            await firebaseRequest("users");
+
+
+        if(!users){
+
+            toast(
+                "Пользователи не найдены"
+            );
+
+            return;
 
         }
 
 
-        setCookie(
-            "doxt_session",
-            token
-        );
+        let found = null;
+
+
+        for(
+            const id in users
+        ){
+
+            const user =
+                users[id];
+
+
+            if(!user){
+                continue;
+            }
+
+
+            /*
+                Новый формат:
+
+                    encryptedToken
+
+                Расшифровываем его
+                введённым Личным Ключом.
+            */
+
+            if(
+                user.encryptedToken
+            ){
+
+                try{
+
+                    const decryptedToken =
+                        decryptToken(
+                            user.encryptedToken,
+                            key
+                        );
+
+
+                    if(
+                        decryptedToken === token
+                    ){
+
+                        found = {
+
+                            ...user,
+
+                            id
+
+                        };
+
+                        break;
+
+                    }
+
+                }catch(error){
+
+                    /*
+                        Неправильный ключ
+                        может привести к невозможному
+                        значению — просто продолжаем поиск.
+                    */
+
+                }
+
+            }
+
+
+            /*
+                СОВМЕСТИМОСТЬ СО СТАРОЙ БАЗОЙ.
+
+                Старые аккаунты могли иметь:
+
+                    token
+
+                или:
+
+                    tokenHash
+            */
+
+
+            if(
+                !user.encryptedToken &&
+                user.token &&
+                user.token === token
+            ){
+
+                found = {
+
+                    ...user,
+
+                    id
+
+                };
+
+                break;
+
+            }
+
+        }
+
+
+        if(!found){
+
+            toast(
+                "Неверный токен или Личный Ключ"
+            );
+
+            return;
+
+        }
 
 
         account = found;
+
+        /*
+            Ключ нужен текущему приложению
+            для информации о текущей сессии.
+
+            В Firebase он не отправляется.
+        */
+
+        personalKey = key;
+
+
+        setSessionToken(token);
 
 
         await openBank();
@@ -1715,12 +2120,13 @@ async function loginByToken(){
 
         console.error(error);
 
-        showLoading(false);
-
-        showToast(
-            error.message ||
+        toast(
             "Ошибка входа"
         );
+
+    }finally{
+
+        hideLoading();
 
     }
 
@@ -1731,30 +2137,52 @@ async function loginByToken(){
    RESTORE SESSION
 ========================================================= */
 
+/*
+    ВАЖНЫЙ МОМЕНТ:
+
+    После перезагрузки страницы браузер имеет token
+    в cookie, но Личный Ключ в Firebase не хранится.
+
+    Поэтому автоматически расшифровать encryptedToken
+    без ключа нельзя.
+
+    Если ключ был сохранён пользователем локально
+    в sessionStorage, используем его.
+
+    При закрытии вкладки он исчезнет.
+*/
+
 async function restoreSession(){
 
     const token =
-        getCookie(
-            "doxt_session"
+        getSessionToken();
+
+
+    const savedKey =
+        sessionStorage.getItem(
+            "doxt_personal_key"
         );
 
 
-    if(!token) return;
+    if(
+        !token ||
+        !savedKey
+    ){
+
+        return;
+
+    }
 
 
     try{
 
-        const hash =
-            await sha256(token);
-
-
         const users =
-            await firebaseRequest(
-                "users"
-            );
+            await firebaseRequest("users");
 
 
-        if(!users) return;
+        if(!users){
+            return;
+        }
 
 
         for(
@@ -1766,31 +2194,70 @@ async function restoreSession(){
 
 
             if(
-                user.tokenHash === hash
+                !user ||
+                !user.encryptedToken
             ){
 
-                account = {
+                continue;
 
-                    ...user,
-
-                    id
-
-                };
+            }
 
 
-                await openBank();
+            try{
 
-                return;
+                const decrypted =
+                    decryptToken(
+                        user.encryptedToken,
+                        savedKey
+                    );
+
+
+                if(
+                    decrypted === token
+                ){
+
+                    account = {
+
+                        ...user,
+
+                        id
+
+                    };
+
+
+                    personalKey =
+                        savedKey;
+
+
+                    await openBank();
+
+                    return;
+
+                }
+
+            }catch{
 
             }
 
         }
 
 
+        /*
+            Если ключ больше не подходит,
+            удаляем локальную сессию.
+        */
+
+        clearSession();
+
+        sessionStorage.removeItem(
+            "doxt_personal_key"
+        );
+
+
     }catch(error){
 
         console.error(
-            "Session restore:",
+            "Session restore error:",
             error
         );
 
@@ -1800,87 +2267,24 @@ async function restoreSession(){
 
 
 /* =========================================================
-   OPEN BANK
-========================================================= */
-
-async function openBank(){
-
-    showLoading(
-        true,
-        "Загрузка банка..."
-    );
-
-
-    try{
-
-        await loadFreshAccount();
-
-
-        document.getElementById(
-            "authScreen"
-        ).style.display = "none";
-
-
-        document.getElementById(
-            "app"
-        ).style.display = "block";
-
-
-        document.getElementById(
-            "welcomeName"
-        ).textContent =
-            account.username;
-
-
-        updateBalanceUI();
-
-
-        clickCount =
-            Number(
-                account.clicks || 0
-            );
-
-
-        clickCountEl();
-
-
-        await loadTransactions();
-
-
-        startRealtimeUpdates();
-
-
-        showLoading(false);
-
-
-    }catch(error){
-
-        console.error(error);
-
-        showLoading(false);
-
-        showToast(
-            "Не удалось загрузить аккаунт"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD ACCOUNT
+   FRESH ACCOUNT
 ========================================================= */
 
 async function loadFreshAccount(){
 
-    if(!account?.id) return;
+    if(
+        !account ||
+        !account.id
+    ){
+
+        return false;
+
+    }
 
 
     const fresh =
         await firebaseRequest(
-            "users/" +
-            account.id
+            `users/${account.id}`
         );
 
 
@@ -1888,10 +2292,15 @@ async function loadFreshAccount(){
 
         logout();
 
-        return;
+        return false;
 
     }
 
+
+    /*
+        Firebase является источником истины
+        для баланса, clicks и остальных данных.
+    */
 
     account = {
 
@@ -1902,21 +2311,81 @@ async function loadFreshAccount(){
     };
 
 
-    clickCount =
-        Number(
-            account.clicks || 0
-        );
+    return true;
 
 }
 
 
 /* =========================================================
-   UPDATE BALANCE UI
+   OPEN BANK
+========================================================= */
+
+async function openBank(){
+
+    const ok =
+        await loadFreshAccount();
+
+
+    if(!ok){
+        return;
+    }
+
+
+    document
+        .getElementById("auth")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+
+    /*
+        Ключ сохраняем только в sessionStorage.
+
+        Он исчезнет после закрытия вкладки.
+    */
+
+    if(personalKey){
+
+        sessionStorage.setItem(
+            "doxt_personal_key",
+            personalKey
+        );
+
+    }
+
+
+    updateBalanceUI();
+
+
+    clickCount =
+        Number(
+            account.clicks || 0
+        );
+
+
+    updateClickerUI();
+
+
+    await loadTransactions();
+
+
+    startRealtime();
+
+}
+
+
+/* =========================================================
+   UI BALANCE
 ========================================================= */
 
 function updateBalanceUI(){
 
-    if(!account) return;
+    if(!account){
+        return;
+    }
 
 
     const balance =
@@ -1925,110 +2394,56 @@ function updateBalanceUI(){
         );
 
 
-    document.getElementById(
-        "balance"
-    ).textContent =
-        balance.toLocaleString(
-            "ru-RU"
-        ) +
-        " DOXT";
+    document
+        .getElementById("balance")
+        .textContent =
+        `${formatNumber(balance)} DOXT`;
 
 
-    document.getElementById(
-        "balanceStat"
-    ).textContent =
-        balance.toLocaleString(
-            "ru-RU"
-        ) +
-        " DOXT";
+    document
+        .getElementById("balanceStat")
+        .textContent =
+        `${formatNumber(balance)} DOXT`;
 
 
-    document.getElementById(
-        "clickerBalance"
-    ).textContent =
-        balance.toLocaleString(
-            "ru-RU"
-        ) +
-        " DOXT";
+    document
+        .getElementById("clickerBalance")
+        .textContent =
+        `${formatNumber(balance)} DOXT`;
 
 
-    document.getElementById(
-        "transferBalance"
-    ).textContent =
-        balance.toLocaleString(
-            "ru-RU"
-        ) +
-        " DOXT";
+    document
+        .getElementById("transferBalance")
+        .textContent =
+        `${formatNumber(balance)} DOXT`;
 
 
-    document.getElementById(
-        "walletAddress"
-    ).textContent =
-        account.wallet ||
-        "Адрес не найден";
+    document
+        .getElementById("username")
+        .textContent =
+        account.username || "—";
 
 
-    document.getElementById(
-        "welcomeName"
-    ).textContent =
-        account.username ||
-        "Пользователь";
+    document
+        .getElementById("walletAddress")
+        .textContent =
+        account.wallet || "—";
 
 
-    /*
-     * Для виртуальной карты используем
-     * последние цифры кошелька.
-     */
-
-    if(account.wallet){
-
-        const w =
-            String(
-                account.wallet
-            );
+    const wallet =
+        String(
+            account.wallet || ""
+        )
+        .padStart(12,"0");
 
 
-        document.getElementById(
-            "cardNumber"
-        ).textContent =
-            w.substring(0,4) +
-            " " +
-            w.substring(4,8) +
-            " " +
-            w.substring(8,12) +
-            " ••••";
-
-    }
-
-}
-
-
-/* =========================================================
-   CLICK COUNT UI
-========================================================= */
-
-function clickCountEl(){
-
-    const value =
-        Number(
-            clickCount || 0
-        );
-
-
-    document.getElementById(
-        "clickStat"
-    ).textContent =
-        value.toLocaleString(
-            "ru-RU"
-        );
-
-
-    document.getElementById(
-        "clickerTotal"
-    ).textContent =
-        value.toLocaleString(
-            "ru-RU"
-        );
+    document
+        .getElementById("cardNumber")
+        .textContent =
+        wallet.match(/.{1,4}/g)
+        ?.join(" ")
+        ||
+        "0000 0000 0000 0000";
 
 }
 
@@ -2037,14 +2452,26 @@ function clickCountEl(){
    CLICKER
 ========================================================= */
 
+function updateClickerUI(){
+
+    document
+        .getElementById("clickCount")
+        .textContent =
+        formatNumber(clickCount);
+
+}
+
+
 function clickDOXT(){
 
-    if(!account) return;
+    if(!account){
+        return;
+    }
 
 
     /*
-     * Локально сразу показываем +1.
-     */
+        Мгновенное локальное изменение.
+    */
 
     account.balance =
         Number(
@@ -2054,45 +2481,15 @@ function clickDOXT(){
 
     clickCount++;
 
-
-    account.clicks =
-        clickCount;
-
-
-    /*
-     * Добавляем к очереди.
-     */
-
     clickerPending++;
-
-
-    /*
-     * Пока пользователь кликает,
-     * realtime refresh не должен
-     * вернуть старый Firebase balance.
-     */
 
     clickerWaiting = true;
 
 
     updateBalanceUI();
 
-    clickCountEl();
+    updateClickerUI();
 
-
-    const status =
-        document.getElementById(
-            "clickerStatus"
-        );
-
-
-    status.textContent =
-        "Клики пока не сохранены...";
-
-
-    /*
-     * Ждём 1 секунду после последнего клика.
-     */
 
     clearTimeout(
         clickSaveTimer
@@ -2100,49 +2497,40 @@ function clickDOXT(){
 
 
     clickSaveTimer =
-        setTimeout(
-            () => {
+        setTimeout(() => {
 
-                clickerWaiting = false;
+            clickerWaiting = false;
 
-                status.textContent =
-                    "Сохранение...";
+            saveClickerState();
 
-                saveClickerState();
-
-            },
-            1000
-        );
+        },1000);
 
 }
 
 
 /* =========================================================
-   SAVE CLICKER
+   CLICKER SAVE
 ========================================================= */
 
 async function saveClickerState(){
 
-    if(!account) return;
+    if(!account){
+        return;
+    }
 
-    if(clickerSaving) return;
 
-    if(clickerPending <= 0) return;
+    if(clickerSaving){
+        return;
+    }
+
+
+    if(clickerPending <= 0){
+        return;
+    }
 
 
     clickerSaving = true;
 
-
-    /*
-     * ВАЖНО:
-     *
-     * Сразу забираем текущую очередь.
-     *
-     * Если во время запроса пользователь
-     * нажмёт кнопку ещё раз, новый клик
-     * попадёт уже в новую очередь и
-     * не будет потерян.
-     */
 
     const pending =
         clickerPending;
@@ -2153,39 +2541,53 @@ async function saveClickerState(){
 
     try{
 
+        /*
+            Получаем самый свежий баланс.
+
+            Поэтому ручное изменение:
+
+                balance: 50000
+
+            будет учтено.
+        */
+
         const serverUser =
             await firebaseRequest(
-                "users/" +
-                account.id
+                `users/${account.id}`
             );
 
 
         if(!serverUser){
 
             throw new Error(
-                "Пользователь не найден"
+                "User not found"
             );
 
         }
 
 
-        const newBalance =
+        const serverBalance =
             Number(
                 serverUser.balance || 0
-            ) +
-            pending;
+            );
+
+
+        const serverClicks =
+            Number(
+                serverUser.clicks || 0
+            );
+
+
+        const newBalance =
+            serverBalance + pending;
 
 
         const newClicks =
-            Number(
-                serverUser.clicks || 0
-            ) +
-            pending;
+            serverClicks + pending;
 
 
         await firebaseRequest(
-            "users/" +
-            account.id,
+            `users/${account.id}`,
             "PATCH",
             {
 
@@ -2196,11 +2598,6 @@ async function saveClickerState(){
             }
         );
 
-
-        /*
-         * Обновляем локальное состояние
-         * только после успешного сохранения.
-         */
 
         account.balance =
             newBalance;
@@ -2216,39 +2613,21 @@ async function saveClickerState(){
 
         updateBalanceUI();
 
-        clickCountEl();
-
-
-        document.getElementById(
-            "clickerStatus"
-        ).textContent =
-            "Сохранено";
+        updateClickerUI();
 
 
     }catch(error){
 
         console.error(
-            "Clicker save:",
+            "Clicker save error:",
             error
         );
 
 
-        /*
-         * Возвращаем несохранённые клики
-         * обратно в очередь.
-         */
-
-        clickerPending +=
-            pending;
+        clickerPending += pending;
 
 
-        document.getElementById(
-            "clickerStatus"
-        ).textContent =
-            "Ошибка сохранения";
-
-
-        showToast(
+        toast(
             "Не удалось сохранить клики"
         );
 
@@ -2257,12 +2636,6 @@ async function saveClickerState(){
 
         clickerSaving = false;
 
-
-        /*
-         * Если во время сохранения
-         * появились новые клики —
-         * ждём новую паузу.
-         */
 
         if(
             clickerPending > 0
@@ -2273,21 +2646,14 @@ async function saveClickerState(){
             );
 
 
-            clickerWaiting = true;
-
-
             clickSaveTimer =
-                setTimeout(
-                    () => {
+                setTimeout(() => {
 
-                        clickerWaiting =
-                            false;
+                    clickerWaiting = false;
 
-                        saveClickerState();
+                    saveClickerState();
 
-                    },
-                    1000
-                );
+                },1000);
 
         }
 
@@ -2300,53 +2666,33 @@ async function saveClickerState(){
    REALTIME
 ========================================================= */
 
-function startRealtimeUpdates(){
+function startRealtime(){
 
-    stopRealtimeUpdates();
+    clearInterval(
+        realtimeTimer
+    );
 
 
     realtimeTimer =
         setInterval(
-            async () => {
-
-                await refreshBankData();
-
-            },
+            refreshBankData,
             3000
         );
 
 }
 
 
-function stopRealtimeUpdates(){
-
-    if(realtimeTimer){
-
-        clearInterval(
-            realtimeTimer
-        );
-
-        realtimeTimer = null;
-
-    }
-
-}
-
-
-/* =========================================================
-   REFRESH
-========================================================= */
-
 async function refreshBankData(){
 
-    if(!account?.id) return;
+    if(!account){
+        return;
+    }
 
 
     /*
-     * Нельзя обновлять локальный баланс
-     * из Firebase, пока кликер имеет
-     * несохранённые изменения.
-     */
+        Не затираем локальные клики
+        старым Firebase состоянием.
+    */
 
     if(
         clickerPending > 0 ||
@@ -2363,12 +2709,13 @@ async function refreshBankData(){
 
         const fresh =
             await firebaseRequest(
-                "users/" +
-                account.id
+                `users/${account.id}`
             );
 
 
-        if(!fresh) return;
+        if(!fresh){
+            return;
+        }
 
 
         account = {
@@ -2388,7 +2735,7 @@ async function refreshBankData(){
 
         updateBalanceUI();
 
-        clickCountEl();
+        updateClickerUI();
 
 
         await loadTransactions();
@@ -2397,7 +2744,7 @@ async function refreshBankData(){
     }catch(error){
 
         console.error(
-            "Realtime refresh:",
+            "Refresh error:",
             error
         );
 
@@ -2407,47 +2754,39 @@ async function refreshBankData(){
 
 
 /* =========================================================
-   SEND MONEY
+   TRANSFER
 ========================================================= */
 
 async function sendMoney(){
 
-    if(!account) return;
+    if(!account){
+        return;
+    }
 
 
-    const wallet =
-        document.getElementById(
-            "receiverWallet"
-        )
+    const receiverWallet =
+        document
+        .getElementById("receiverWallet")
         .value
         .trim();
 
 
     const amount =
         Number(
-            document.getElementById(
-                "transferAmount"
-            ).value
+            document
+            .getElementById("transferAmount")
+            .value
         );
 
 
-    if(!/^\d{12}$/.test(wallet)){
+    if(
+        !/^\d{12}$/.test(
+            receiverWallet
+        )
+    ){
 
-        showToast(
-            "Введите правильный 12-значный адрес"
-        );
-
-        return;
-
-    }
-
-
-    if(!Number.isFinite(amount) ||
-       amount <= 0 ||
-       !Number.isInteger(amount)){
-
-        showToast(
-            "Введите целую сумму"
+        toast(
+            "Адрес должен содержать 12 цифр"
         );
 
         return;
@@ -2456,12 +2795,12 @@ async function sendMoney(){
 
 
     if(
-        amount >
-        Number(account.balance || 0)
+        !Number.isFinite(amount) ||
+        amount <= 0
     ){
 
-        showToast(
-            "Недостаточно DOXT"
+        toast(
+            "Введите корректную сумму"
         );
 
         return;
@@ -2470,11 +2809,11 @@ async function sendMoney(){
 
 
     if(
-        wallet === account.wallet
+        !Number.isInteger(amount)
     ){
 
-        showToast(
-            "Нельзя отправить DOXT самому себе"
+        toast(
+            "Количество DOXT должно быть целым"
         );
 
         return;
@@ -2483,16 +2822,47 @@ async function sendMoney(){
 
 
     showLoading(
-        true,
-        "Поиск получателя..."
+        "Проверка перевода..."
     );
 
 
     try{
 
-        /*
-         * Ищем получателя.
-         */
+        const sender =
+            await firebaseRequest(
+                `users/${account.id}`
+            );
+
+
+        if(!sender){
+
+            toast(
+                "Ваш аккаунт не найден"
+            );
+
+            return;
+
+        }
+
+
+        const senderBalance =
+            Number(
+                sender.balance || 0
+            );
+
+
+        if(
+            amount > senderBalance
+        ){
+
+            toast(
+                "Недостаточно DOXT"
+            );
+
+            return;
+
+        }
+
 
         const users =
             await firebaseRequest(
@@ -2503,27 +2873,28 @@ async function sendMoney(){
         let receiver = null;
 
 
-        if(users){
+        for(
+            const id in (users || {})
+        ){
 
-            for(
-                const id in users
+            const user =
+                users[id];
+
+
+            if(
+                user &&
+                user.wallet === receiverWallet
             ){
 
-                if(
-                    users[id].wallet === wallet
-                ){
+                receiver = {
 
-                    receiver = {
+                    ...user,
 
-                        ...users[id],
+                    id
 
-                        id
+                };
 
-                    };
-
-                    break;
-
-                }
+                break;
 
             }
 
@@ -2532,161 +2903,121 @@ async function sendMoney(){
 
         if(!receiver){
 
-            throw new Error(
+            toast(
                 "Получатель не найден"
             );
 
-        }
-
-
-        /*
-         * Получаем актуальный аккаунт
-         * отправителя.
-         */
-
-        const sender =
-            await firebaseRequest(
-                "users/" +
-                account.id
-            );
-
-
-        if(!sender){
-
-            throw new Error(
-                "Отправитель не найден"
-            );
+            return;
 
         }
 
 
         if(
-            Number(sender.balance || 0)
-            < amount
+            receiver.id === account.id
         ){
 
-            throw new Error(
-                "Недостаточно DOXT"
+            toast(
+                "Нельзя отправить DOXT самому себе"
             );
+
+            return;
 
         }
 
 
+        const receiverBalance =
+            Number(
+                receiver.balance || 0
+            );
+
+
+        const newSenderBalance =
+            senderBalance - amount;
+
+
+        const newReceiverBalance =
+            receiverBalance + amount;
+
+
         const txId =
-            Date.now() +
-            "_" +
-            randomDigits(6);
+            Date.now().toString(36)
+            +
+            Math.random()
+                .toString(36)
+                .slice(2);
 
 
-        const now =
+        const timestamp =
             Date.now();
 
 
-        /*
-         * Входящая операция.
-         *
-         * Здесь сохраняем имя отправителя
-         * и его кошелёк.
-         */
+        const outgoingTx = {
 
-        const incoming = {
-
-            type:"in",
-
-            title:"Получение DOXT",
+            type:"outgoing",
 
             amount:amount,
 
-            from:
-                sender.wallet,
+            from:account.wallet,
 
             fromUsername:
-                sender.username,
+                account.username || "",
 
-            to:
-                receiver.wallet,
-
-            timestamp:now
-
-        };
-
-
-        /*
-         * Исходящая операция.
-         */
-
-        const outgoing = {
-
-            type:"out",
-
-            title:"Перевод DOXT",
-
-            amount:amount,
-
-            from:
-                sender.wallet,
-
-            fromUsername:
-                sender.username,
-
-            to:
-                receiver.wallet,
+            to:receiver.wallet,
 
             toUsername:
-                receiver.username,
+                receiver.username || "",
 
-            timestamp:now
+            timestamp:timestamp
 
         };
 
 
-        /*
-         * Используем multi-location update.
-         */
+        const incomingTx = {
+
+            type:"incoming",
+
+            amount:amount,
+
+            from:account.wallet,
+
+            fromUsername:
+                account.username || "",
+
+            to:receiver.wallet,
+
+            toUsername:
+                receiver.username || "",
+
+            timestamp:timestamp
+
+        };
+
 
         const updates = {};
 
 
         updates[
-            "users/" +
-            sender.id +
-            "/balance"
+            `users/${account.id}/balance`
         ] =
-            Number(
-                sender.balance || 0
-            ) -
-            amount;
+            newSenderBalance;
 
 
         updates[
-            "users/" +
-            receiver.id +
-            "/balance"
+            `users/${receiver.id}/balance`
         ] =
-            Number(
-                receiver.balance || 0
-            ) +
-            amount;
+            newReceiverBalance;
 
 
         updates[
-            "transactions/" +
-            sender.id +
-            "/" +
-            txId +
-            "_out"
+            `transactions/${account.id}/${txId}`
         ] =
-            outgoing;
+            outgoingTx;
 
 
         updates[
-            "transactions/" +
-            receiver.id +
-            "/" +
-            txId +
-            "_in"
+            `transactions/${receiver.id}/${txId}`
         ] =
-            incoming;
+            incomingTx;
 
 
         await firebaseRequest(
@@ -2696,56 +3027,42 @@ async function sendMoney(){
         );
 
 
-        /*
-         * Обновляем локальный баланс.
-         */
-
         account.balance =
-            Number(
-                sender.balance || 0
-            ) -
-            amount;
+            newSenderBalance;
 
 
         updateBalanceUI();
 
 
-        document.getElementById(
-            "receiverWallet"
-        ).value = "";
+        document
+            .getElementById("receiverWallet")
+            .value = "";
 
 
-        document.getElementById(
-            "transferAmount"
-        ).value = "";
+        document
+            .getElementById("transferAmount")
+            .value = "";
 
 
         await loadTransactions();
 
 
-        showLoading(false);
-
-
-        showToast(
-            "Перевод выполнен"
+        toast(
+            `Отправлено ${formatNumber(amount)} DOXT`
         );
 
 
     }catch(error){
 
-        console.error(
-            "Transfer:",
-            error
-        );
+        console.error(error);
 
-
-        showLoading(false);
-
-
-        showToast(
-            error.message ||
+        toast(
             "Ошибка перевода"
         );
+
+    }finally{
+
+        hideLoading();
 
     }
 
@@ -2753,35 +3070,37 @@ async function sendMoney(){
 
 
 /* =========================================================
-   TRANSACTION HISTORY
+   TRANSACTIONS
 ========================================================= */
 
 async function loadTransactions(){
 
-    if(!account?.id) return;
+    if(!account){
+        return;
+    }
 
 
     const container =
-        document.getElementById(
-            "transactions"
-        );
+        document
+        .getElementById("transactions");
 
 
     try{
 
         const data =
             await firebaseRequest(
-                "transactions/" +
-                account.id
+                `transactions/${account.id}`
             );
 
 
         if(!data){
 
             container.innerHTML =
-                `<div class="empty">
+                `
+                <div class="empty">
                     Операций пока нет
-                 </div>`;
+                </div>
+                `;
 
             return;
 
@@ -2792,16 +3111,14 @@ async function loadTransactions(){
             Object.entries(data)
             .map(
                 ([id,tx]) => ({
-
                     id,
-
                     ...tx
-
                 })
             )
             .sort(
                 (a,b) =>
-                    Number(b.timestamp || 0) -
+                    Number(b.timestamp || 0)
+                    -
                     Number(a.timestamp || 0)
             )
             .slice(0,30);
@@ -2810,9 +3127,11 @@ async function loadTransactions(){
         if(!list.length){
 
             container.innerHTML =
-                `<div class="empty">
+                `
+                <div class="empty">
                     Операций пока нет
-                 </div>`;
+                </div>
+                `;
 
             return;
 
@@ -2821,167 +3140,132 @@ async function loadTransactions(){
 
         container.innerHTML =
             list
-            .map(
-                tx => {
+            .map(tx => {
 
-                    const incoming =
-                        tx.type === "in";
-
-
-                    let sub = "";
+                const incoming =
+                    tx.type === "incoming";
 
 
-                    if(incoming){
-
-                        /*
-                         * Новый формат:
-                         *
-                         * От: username · wallet
-                         *
-                         * Старые транзакции тоже
-                         * нормально отображаются.
-                         */
-
-                        const username =
-                            tx.fromUsername ||
-                            "Неизвестный пользователь";
+                const sign =
+                    incoming
+                    ? "+"
+                    : "-";
 
 
-                        const wallet =
-                            tx.from ||
-                            "—";
+                const cls =
+                    incoming
+                    ? "in"
+                    : "out";
 
 
-                        sub =
-                            "От: " +
+                const title =
+                    incoming
+                    ? "Получение DOXT"
+                    : "Отправка DOXT";
+
+
+                let sub;
+
+
+                if(incoming){
+
+                    sub =
+                        `От: ${
                             escapeHTML(
-                                username
-                            ) +
-                            " · " +
-                            escapeHTML(
-                                wallet
-                            );
-
-                    }else{
-
-                        const username =
-                            tx.toUsername;
+                                tx.fromUsername ||
+                                tx.from ||
+                                "—"
+                            )
+                        }`;
 
 
-                        const wallet =
-                            tx.to ||
-                            "—";
+                    if(tx.from){
 
-
-                        if(username){
-
-                            sub =
-                                "Кому: " +
-                                escapeHTML(
-                                    username
-                                ) +
-                                " · " +
-                                escapeHTML(
-                                    wallet
-                                );
-
-                        }else{
-
-                            sub =
-                                "Кому: " +
-                                escapeHTML(
-                                    wallet
-                                );
-
-                        }
+                        sub +=
+                            ` · ${
+                                escapeHTML(tx.from)
+                            }`;
 
                     }
 
+                }else{
 
-                    const amount =
-                        Number(
-                            tx.amount || 0
-                        );
-
-
-                    const date =
-                        tx.timestamp
-                        ? new Date(
-                            tx.timestamp
-                          )
-                          .toLocaleString(
-                              "ru-RU",
-                              {
-                                  day:"2-digit",
-                                  month:"2-digit",
-                                  year:"numeric",
-                                  hour:"2-digit",
-                                  minute:"2-digit"
-                              }
-                          )
-                        : "—";
+                    sub =
+                        `Кому: ${
+                            escapeHTML(
+                                tx.toUsername ||
+                                tx.to ||
+                                "—"
+                            )
+                        }`;
 
 
-                    return `
+                    if(tx.to){
 
-                        <div class="transaction">
+                        sub +=
+                            ` · ${
+                                escapeHTML(tx.to)
+                            }`;
 
-                            <div class="txIcon">
-                                ${incoming ? "↓" : "↑"}
-                            </div>
-
-                            <div class="txInfo">
-
-                                <div class="txTitle">
-                                    ${escapeHTML(
-                                        tx.title ||
-                                        (
-                                            incoming
-                                            ? "Получение DOXT"
-                                            : "Перевод DOXT"
-                                        )
-                                    )}
-                                </div>
-
-                                <div class="txSub">
-                                    ${sub}
-                                </div>
-
-                                <div class="txSub">
-                                    ${date}
-                                </div>
-
-                            </div>
-
-                            <div class="txAmount ${incoming ? "in" : "out"}">
-
-                                ${incoming ? "+" : "-"}
-                                ${amount.toLocaleString("ru-RU")}
-                                DOXT
-
-                            </div>
-
-                        </div>
-
-                    `;
+                    }
 
                 }
-            )
+
+
+                const date =
+                    tx.timestamp
+                    ? new Date(
+                        tx.timestamp
+                    ).toLocaleString("ru-RU")
+                    : "";
+
+
+                return `
+
+                <div class="transaction">
+
+                    <div class="tx-main">
+
+                        <div class="tx-title">
+                            ${title}
+                        </div>
+
+                        <div class="tx-sub">
+                            ${sub}
+                        </div>
+
+                        <div class="tx-sub">
+                            ${escapeHTML(date)}
+                        </div>
+
+                    </div>
+
+                    <div class="tx-amount ${cls}">
+                        ${sign}${formatNumber(tx.amount)} DOXT
+                    </div>
+
+                </div>
+
+                `;
+
+            })
             .join("");
 
 
     }catch(error){
 
         console.error(
-            "Transactions:",
+            "Transaction history error:",
             error
         );
 
 
         container.innerHTML =
-            `<div class="empty">
+            `
+            <div class="empty">
                 Не удалось загрузить историю
-             </div>`;
+            </div>
+            `;
 
     }
 
@@ -2989,88 +3273,51 @@ async function loadTransactions(){
 
 
 /* =========================================================
-   ESCAPE HTML
+   NAVIGATION
 ========================================================= */
 
-function escapeHTML(value){
-
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =========================================================
-   TABS
-========================================================= */
-
-function switchPage(
-    page,
-    button
-){
+function switchPage(page){
 
     document
-        .querySelectorAll(
-            ".page"
-        )
-        .forEach(
-            el =>
-                el.classList.remove(
-                    "active"
-                )
-        );
+        .querySelectorAll(".page")
+        .forEach(el => {
 
+            el.classList.remove(
+                "active"
+            );
 
-    document
-        .querySelectorAll(
-            ".tab"
-        )
-        .forEach(
-            el =>
-                el.classList.remove(
-                    "active"
-                )
-        );
+        });
 
 
     document
         .getElementById(
-            "page-" + page
+            `page-${page}`
         )
-        .classList.add(
-            "active"
-        );
+        .classList.add("active");
 
 
-    button.classList.add(
-        "active"
-    );
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(el => {
+
+            el.classList.remove(
+                "active"
+            );
+
+        });
 
 
-    if(page === "home"){
+    document
+        .getElementById(
+            `nav-${page}`
+        )
+        .classList.add("active");
 
-        loadTransactions();
 
-    }
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
@@ -3081,52 +3328,50 @@ function switchPage(
 
 async function copyText(text){
 
+    if(!text){
+        return;
+    }
+
+
     try{
 
         await navigator.clipboard.writeText(
             text
         );
 
-        showToast(
+        toast(
             "Скопировано"
         );
 
+
     }catch{
 
-        showToast(
-            "Не удалось скопировать"
+        const area =
+            document.createElement(
+                "textarea"
+            );
+
+
+        area.value = text;
+
+        document.body.appendChild(
+            area
         );
 
-    }
 
-}
+        area.select();
 
-
-function copyWallet(){
-
-    if(account?.wallet){
-
-        copyText(
-            account.wallet
+        document.execCommand(
+            "copy"
         );
 
-    }
 
-}
-
-
-function copyToken(){
-
-    const token =
-        document.getElementById(
-            "newToken"
-        )
-        .textContent;
+        area.remove();
 
 
-    if(token){
-
-        copyText(token);
+        toast(
+            "Скопировано"
+        );
 
     }
 
@@ -3137,20 +3382,7 @@ function copyToken(){
    LOGOUT
 ========================================================= */
 
-function logout(){
-
-    stopRealtimeUpdates();
-
-
-    clearTimeout(
-        clickSaveTimer
-    );
-
-
-    /*
-     * Если были несохранённые клики,
-     * предупреждаем пользователя.
-     */
+async function logout(){
 
     if(
         clickerPending > 0 ||
@@ -3158,8 +3390,8 @@ function logout(){
         clickerWaiting
     ){
 
-        showToast(
-            "Подождите сохранения кликов"
+        toast(
+            "Сначала дождитесь сохранения кликов"
         );
 
         return;
@@ -3167,33 +3399,47 @@ function logout(){
     }
 
 
-    account = null;
-
-    clickCount = 0;
-
-    clickerPending = 0;
-
-    clickerSaving = false;
-
-    clickerWaiting = false;
-
-
-    deleteCookie(
-        "doxt_session"
+    clearInterval(
+        realtimeTimer
     );
 
 
-    document.getElementById(
-        "app"
-    ).style.display = "none";
+    account = null;
+
+    personalKey = null;
+
+    clickCount = 0;
 
 
-    document.getElementById(
-        "authScreen"
-    ).style.display = "flex";
+    clearSession();
 
 
-    showRegister();
+    sessionStorage.removeItem(
+        "doxt_personal_key"
+    );
+
+
+    document
+        .getElementById("app")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("auth")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("loginToken")
+        .value = "";
+
+
+    document
+        .getElementById("loginPersonalKey")
+        .value = "";
+
+
+    showLogin();
 
 }
 
@@ -3204,9 +3450,9 @@ function logout(){
 
 window.addEventListener(
     "load",
-    () => {
+    async () => {
 
-        restoreSession();
+        await restoreSession();
 
     }
 );
