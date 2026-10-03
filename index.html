@@ -1,0 +1,3217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>DOXT Bank</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#090a0c;
+    --surface:#131519;
+    --surface2:#1a1d22;
+    --border:#292d34;
+    --text:#fff;
+    --muted:#8d949f;
+    --accent:#6d9cff;
+    --accent2:#477df0;
+    --green:#55d98a;
+    --red:#ff6565;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    min-height:100%;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+input{
+    outline:none;
+}
+
+/* AUTH */
+
+.auth{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.authBox{
+    width:100%;
+    max-width:430px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:26px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-1px;
+    margin-bottom:5px;
+}
+
+.logo span{
+    color:var(--accent);
+}
+
+.subtitle{
+    text-align:center;
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.input{
+    width:100%;
+    height:52px;
+    background:var(--surface2);
+    color:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:0 16px;
+    margin-bottom:12px;
+}
+
+.input:focus{
+    border-color:var(--accent);
+}
+
+.primary{
+    width:100%;
+    min-height:52px;
+    background:var(--accent);
+    color:white;
+    border-radius:14px;
+    font-weight:700;
+    margin-top:5px;
+}
+
+.primary:active{
+    transform:scale(.98);
+}
+
+.secondary{
+    width:100%;
+    min-height:50px;
+    background:var(--surface2);
+    color:white;
+    border:1px solid var(--border);
+    border-radius:14px;
+    margin-top:10px;
+}
+
+.authSwitch{
+    text-align:center;
+    color:var(--muted);
+    margin-top:20px;
+    font-size:14px;
+}
+
+.link{
+    color:var(--accent);
+    cursor:pointer;
+}
+
+/* TOKEN */
+
+.tokenBox{
+    display:none;
+}
+
+.token{
+    margin:18px 0;
+    padding:15px;
+    background:#08090b;
+    border:1px solid var(--border);
+    border-radius:14px;
+    word-break:break-all;
+    font-family:monospace;
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* APP */
+
+.app{
+    display:none;
+    min-height:100vh;
+    padding-bottom:105px;
+}
+
+.topbar{
+    height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 18px;
+    border-bottom:1px solid var(--border);
+    background:rgba(9,10,12,.9);
+    position:sticky;
+    top:0;
+    z-index:20;
+    backdrop-filter:blur(15px);
+}
+
+.topLogo{
+    font-size:21px;
+    font-weight:800;
+}
+
+.topLogo span{
+    color:var(--accent);
+}
+
+.logout{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:var(--surface2);
+    color:white;
+    border:1px solid var(--border);
+}
+
+.page{
+    display:none;
+    padding:18px;
+    max-width:700px;
+    margin:auto;
+}
+
+.page.active{
+    display:block;
+}
+
+.welcome{
+    margin:8px 0 18px;
+}
+
+.welcome small{
+    color:var(--muted);
+}
+
+.welcome h1{
+    margin:4px 0 0;
+    font-size:28px;
+}
+
+/* CARD */
+
+.bankCard{
+    position:relative;
+    overflow:hidden;
+    min-height:205px;
+    border-radius:25px;
+    padding:22px;
+    background:
+        radial-gradient(circle at 90% 10%,rgba(255,255,255,.15),transparent 35%),
+        linear-gradient(135deg,#244b9e,#16295b 55%,#0c1530);
+    box-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+
+.bankCard:after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+    right:-70px;
+    bottom:-70px;
+}
+
+.cardBrand{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:space-between;
+    font-weight:800;
+}
+
+.cardBalanceLabel{
+    position:relative;
+    z-index:2;
+    color:#d9e3ff;
+    margin-top:32px;
+    font-size:13px;
+}
+
+.cardBalance{
+    position:relative;
+    z-index:2;
+    font-size:34px;
+    font-weight:800;
+    margin-top:5px;
+}
+
+.cardNumber{
+    position:relative;
+    z-index:2;
+    margin-top:26px;
+    letter-spacing:3px;
+    font-family:monospace;
+}
+
+/* PANELS */
+
+.panel{
+    margin-top:15px;
+    padding:18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:20px;
+}
+
+.panelTitle{
+    font-weight:700;
+    margin-bottom:14px;
+}
+
+.wallet{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.walletAddress{
+    flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    font-family:monospace;
+    color:#d8dde6;
+}
+
+.copy{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:var(--surface2);
+    color:white;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.stat{
+    padding:17px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+}
+
+.statLabel{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.statValue{
+    margin-top:7px;
+    font-size:21px;
+    font-weight:700;
+}
+
+/* TRANSACTIONS */
+
+.transaction{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.transaction:last-child{
+    border-bottom:0;
+}
+
+.txIcon{
+    width:43px;
+    height:43px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--surface2);
+    font-size:20px;
+}
+
+.txInfo{
+    flex:1;
+    min-width:0;
+}
+
+.txTitle{
+    font-weight:700;
+}
+
+.txSub{
+    margin-top:4px;
+    color:var(--muted);
+    font-size:12px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.txAmount{
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.txAmount.in{
+    color:var(--green);
+}
+
+.txAmount.out{
+    color:var(--red);
+}
+
+.empty{
+    color:var(--muted);
+    text-align:center;
+    padding:25px 10px;
+}
+
+/* TRANSFER */
+
+.amountInput{
+    font-size:24px;
+    font-weight:700;
+    text-align:center;
+}
+
+.transferHint{
+    color:var(--muted);
+    font-size:13px;
+    margin:-3px 0 12px;
+}
+
+/* CLICKER */
+
+.clicker{
+    text-align:center;
+}
+
+.clickerBalance{
+    font-size:43px;
+    font-weight:800;
+    margin:15px 0 4px;
+}
+
+.clickerLabel{
+    color:var(--muted);
+}
+
+.clickButton{
+    width:min(260px,75vw);
+    height:min(260px,75vw);
+    border-radius:50%;
+    margin:35px auto 25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 35% 25%,#86aaff,#4778e8);
+    color:white;
+    box-shadow:
+        0 20px 50px rgba(40,90,200,.3),
+        inset 0 -15px 30px rgba(0,0,0,.15);
+    user-select:none;
+    touch-action:manipulation;
+}
+
+.clickButton:active{
+    transform:scale(.94);
+}
+
+.clickButton strong{
+    font-size:55px;
+}
+
+.clickButton span{
+    margin-top:4px;
+    font-size:14px;
+    opacity:.8;
+}
+
+.clickerStatus{
+    min-height:20px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+/* BOTTOM */
+
+.tabBar{
+    position:fixed;
+    z-index:50;
+    left:50%;
+    bottom:12px;
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:620px;
+    height:72px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    padding:7px;
+    gap:5px;
+    background:rgba(19,21,25,.94);
+    border:1px solid var(--border);
+    border-radius:22px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 15px 40px rgba(0,0,0,.45);
+}
+
+.tab{
+    border-radius:16px;
+    background:transparent;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:3px;
+}
+
+.tab.active{
+    color:white;
+    background:var(--surface2);
+}
+
+.tabIcon{
+    font-size:20px;
+}
+
+.tabText{
+    font-size:11px;
+}
+
+/* LOADING */
+
+.loading{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(5px);
+}
+
+.loadingBox{
+    padding:22px 28px;
+    border-radius:18px;
+    background:var(--surface);
+    border:1px solid var(--border);
+}
+
+.spinner{
+    width:28px;
+    height:28px;
+    margin:auto;
+    border:3px solid #30343c;
+    border-top-color:var(--accent);
+    border-radius:50%;
+    animation:spin .7s linear infinite;
+}
+
+.loadingText{
+    margin-top:12px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    z-index:200;
+    left:50%;
+    bottom:96px;
+    transform:translate(-50%,20px);
+    opacity:0;
+    pointer-events:none;
+    padding:13px 17px;
+    background:#20242b;
+    border:1px solid #363c45;
+    border-radius:13px;
+    font-size:14px;
+    transition:.25s;
+    max-width:calc(100% - 30px);
+    text-align:center;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+@media(max-width:420px){
+
+    .authBox{
+        padding:20px;
+    }
+
+    .page{
+        padding:14px;
+    }
+
+    .cardBalance{
+        font-size:30px;
+    }
+
+    .stats{
+        gap:8px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- AUTH -->
+
+<div class="auth" id="authScreen">
+
+    <div class="authBox">
+
+        <div class="logo">
+            DOXT<span>Bank</span>
+        </div>
+
+        <div class="subtitle">
+            Виртуальная тестовая банковская система
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div id="registerForm">
+
+            <input
+                id="registerUsername"
+                class="input"
+                maxlength="24"
+                placeholder="Имя пользователя"
+                autocomplete="off"
+            >
+
+            <button
+                class="primary"
+                onclick="register()"
+            >
+                Создать аккаунт
+            </button>
+
+            <div class="authSwitch">
+                Уже есть аккаунт?
+                <span
+                    class="link"
+                    onclick="showLogin()"
+                >
+                    Войти по токену
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginForm" style="display:none">
+
+            <input
+                id="loginToken"
+                class="input"
+                placeholder="Токен сессии"
+                autocomplete="off"
+            >
+
+            <button
+                class="primary"
+                onclick="loginByToken()"
+            >
+                Войти
+            </button>
+
+            <div class="authSwitch">
+                Нет аккаунта?
+                <span
+                    class="link"
+                    onclick="showRegister()"
+                >
+                    Зарегистрироваться
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- TOKEN -->
+
+        <div class="tokenBox" id="tokenBox">
+
+            <div class="subtitle">
+                Аккаунт создан
+            </div>
+
+            <div class="token" id="newToken"></div>
+
+            <button
+                class="secondary"
+                onclick="copyToken()"
+            >
+                Скопировать токен
+            </button>
+
+            <button
+                class="primary"
+                onclick="continueAfterRegister()"
+            >
+                Продолжить
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- APP -->
+
+<div class="app" id="app">
+
+    <div class="topbar">
+
+        <div class="topLogo">
+            DOXT<span>Bank</span>
+        </div>
+
+        <button
+            class="logout"
+            onclick="logout()"
+            title="Выйти"
+        >
+            ⎋
+        </button>
+
+    </div>
+
+
+    <!-- HOME -->
+
+    <section
+        class="page active"
+        id="page-home"
+    >
+
+        <div class="welcome">
+
+            <small>Добро пожаловать</small>
+
+            <h1 id="welcomeName">
+                Пользователь
+            </h1>
+
+        </div>
+
+
+        <div class="bankCard">
+
+            <div class="cardBrand">
+
+                <span>DOXT BANK</span>
+                <span>DOXT</span>
+
+            </div>
+
+            <div class="cardBalanceLabel">
+                Баланс
+            </div>
+
+            <div
+                class="cardBalance"
+                id="balance"
+            >
+                0 DOXT
+            </div>
+
+            <div
+                class="cardNumber"
+                id="cardNumber"
+            >
+                •••• •••• •••• ••••
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                Ваш кошелёк
+            </div>
+
+            <div class="wallet">
+
+                <div
+                    class="walletAddress"
+                    id="walletAddress"
+                >
+                    Загрузка...
+                </div>
+
+                <button
+                    class="copy"
+                    onclick="copyWallet()"
+                >
+                    ⧉
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="statLabel">
+                    Баланс
+                </div>
+
+                <div
+                    class="statValue"
+                    id="balanceStat"
+                >
+                    0 DOXT
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="statLabel">
+                    Кликов
+                </div>
+
+                <div
+                    class="statValue"
+                    id="clickStat"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                История операций
+            </div>
+
+            <div id="transactions">
+                <div class="empty">
+                    Загрузка...
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRANSFER -->
+
+    <section
+        class="page"
+        id="page-transfer"
+    >
+
+        <div class="welcome">
+
+            <small>DOXT</small>
+
+            <h1>
+                Перевод
+            </h1>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                Получатель
+            </div>
+
+            <input
+                id="receiverWallet"
+                class="input"
+                maxlength="12"
+                inputmode="numeric"
+                placeholder="12-значный адрес"
+            >
+
+            <div class="transferHint">
+                Введите адрес кошелька получателя
+            </div>
+
+
+            <div class="panelTitle">
+                Сумма
+            </div>
+
+            <input
+                id="transferAmount"
+                class="input amountInput"
+                type="number"
+                min="1"
+                step="1"
+                placeholder="0"
+            >
+
+            <button
+                class="primary"
+                onclick="sendMoney()"
+            >
+                Отправить DOXT
+            </button>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                Ваш баланс
+            </div>
+
+            <div
+                id="transferBalance"
+                style="font-size:28px;font-weight:800"
+            >
+                0 DOXT
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CLICKER -->
+
+    <section
+        class="page"
+        id="page-clicker"
+    >
+
+        <div class="welcome">
+
+            <small>DOXT Clicker</small>
+
+            <h1>
+                Кликер
+            </h1>
+
+        </div>
+
+
+        <div class="panel clicker">
+
+            <div class="clickerLabel">
+                Ваш баланс
+            </div>
+
+            <div
+                class="clickerBalance"
+                id="clickerBalance"
+            >
+                0 DOXT
+            </div>
+
+            <button
+                class="clickButton"
+                id="clickButton"
+                onclick="clickDOXT()"
+            >
+                <strong>D</strong>
+                <span>+1 DOXT</span>
+            </button>
+
+            <div
+                class="clickerStatus"
+                id="clickerStatus"
+            >
+                Готов к кликам
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <div class="panelTitle">
+                Всего кликов
+            </div>
+
+            <div
+                id="clickerTotal"
+                style="font-size:25px;font-weight:800"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NAV -->
+
+    <div class="tabBar">
+
+        <button
+            class="tab active"
+            onclick="switchPage('home',this)"
+        >
+            <span class="tabIcon">⌂</span>
+            <span class="tabText">Главная</span>
+        </button>
+
+
+        <button
+            class="tab"
+            onclick="switchPage('transfer',this)"
+        >
+            <span class="tabIcon">↗</span>
+            <span class="tabText">Перевод</span>
+        </button>
+
+
+        <button
+            class="tab"
+            onclick="switchPage('clicker',this)"
+        >
+            <span class="tabIcon">D</span>
+            <span class="tabText">Кликер</span>
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LOADING -->
+
+<div
+    class="loading"
+    id="loading"
+>
+
+    <div class="loadingBox">
+
+        <div class="spinner"></div>
+
+        <div class="loadingText">
+            Загрузка...
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+<script>
+
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+const FIREBASE_URL =
+    "https://fietietuwuetieth56-default-rtdb.asia-southeast1.firebasedatabase.app";
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let account = null;
+
+let clickCount = 0;
+
+let clickSaveTimer = null;
+
+let clickerPending = 0;
+
+let clickerSaving = false;
+
+let clickerWaiting = false;
+
+let realtimeTimer = null;
+
+let toastTimer = null;
+
+
+/* =========================================================
+   FIREBASE REQUEST
+========================================================= */
+
+async function firebaseRequest(
+    path,
+    method = "GET",
+    data = null
+){
+
+    const url =
+        FIREBASE_URL +
+        "/" +
+        path +
+        ".json";
+
+
+    const options = {
+        method,
+        headers:{
+            "Content-Type":"application/json"
+        }
+    };
+
+
+    if(data !== null){
+
+        options.body =
+            JSON.stringify(data);
+
+    }
+
+
+    const response =
+        await fetch(url,options);
+
+
+    if(!response.ok){
+
+        throw new Error(
+            "Firebase HTTP " +
+            response.status
+        );
+
+    }
+
+
+    return await response.json();
+}
+
+
+/* =========================================================
+   UTILS
+========================================================= */
+
+function randomDigits(length){
+
+    let result = "";
+
+    for(let i = 0; i < length; i++){
+
+        result +=
+            Math.floor(
+                Math.random() * 10
+            );
+
+    }
+
+    return result;
+}
+
+
+function generateWallet(){
+
+    return randomDigits(12);
+
+}
+
+
+function generateToken(){
+
+    const bytes =
+        new Uint8Array(32);
+
+    crypto.getRandomValues(bytes);
+
+    return Array.from(bytes)
+        .map(
+            b =>
+                b.toString(16)
+                 .padStart(2,"0")
+        )
+        .join("");
+
+}
+
+
+async function sha256(text){
+
+    const data =
+        new TextEncoder()
+        .encode(text);
+
+    const hash =
+        await crypto.subtle
+        .digest(
+            "SHA-256",
+            data
+        );
+
+    return Array.from(
+        new Uint8Array(hash)
+    )
+    .map(
+        b =>
+            b.toString(16)
+             .padStart(2,"0")
+    )
+    .join("");
+
+}
+
+
+/* =========================================================
+   COOKIE
+========================================================= */
+
+function setCookie(
+    name,
+    value,
+    days = 30
+){
+
+    const expires =
+        new Date(
+            Date.now() +
+            days * 86400000
+        ).toUTCString();
+
+
+    document.cookie =
+        encodeURIComponent(name) +
+        "=" +
+        encodeURIComponent(value) +
+        "; expires=" +
+        expires +
+        "; path=/; SameSite=Lax";
+}
+
+
+function getCookie(name){
+
+    const target =
+        encodeURIComponent(name) +
+        "=";
+
+
+    const parts =
+        document.cookie.split(";");
+
+
+    for(
+        let part of parts
+    ){
+
+        part =
+            part.trim();
+
+
+        if(
+            part.startsWith(target)
+        ){
+
+            return decodeURIComponent(
+                part.substring(
+                    target.length
+                )
+            );
+
+        }
+
+    }
+
+
+    return null;
+}
+
+
+function deleteCookie(name){
+
+    document.cookie =
+        encodeURIComponent(name) +
+        "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax";
+
+}
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+function showLoading(
+    visible,
+    text = "Загрузка..."
+){
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+    loading.style.display =
+        visible
+        ? "flex"
+        : "none";
+
+
+    const label =
+        loading.querySelector(
+            ".loadingText"
+        );
+
+    label.textContent = text;
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================================================
+   AUTH FORMS
+========================================================= */
+
+function showLogin(){
+
+    document.getElementById(
+        "registerForm"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "loginForm"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "tokenBox"
+    ).style.display = "none";
+
+}
+
+
+function showRegister(){
+
+    document.getElementById(
+        "registerForm"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "loginForm"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "tokenBox"
+    ).style.display = "none";
+
+}
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+async function register(){
+
+    const input =
+        document.getElementById(
+            "registerUsername"
+        );
+
+
+    const username =
+        input.value.trim();
+
+
+    if(username.length < 3){
+
+        showToast(
+            "Имя должно содержать минимум 3 символа"
+        );
+
+        return;
+
+    }
+
+
+    if(username.length > 24){
+
+        showToast(
+            "Имя слишком длинное"
+        );
+
+        return;
+
+    }
+
+
+    showLoading(
+        true,
+        "Создание аккаунта..."
+    );
+
+
+    try{
+
+        /*
+         * Проверяем, нет ли уже такого username.
+         */
+
+        const users =
+            await firebaseRequest(
+                "users"
+            );
+
+
+        if(users){
+
+            const exists =
+                Object.values(users)
+                .some(
+                    user =>
+                        String(
+                            user.username || ""
+                        ).toLowerCase()
+                        ===
+                        username.toLowerCase()
+                );
+
+
+            if(exists){
+
+                throw new Error(
+                    "Такое имя уже занято"
+                );
+
+            }
+
+        }
+
+
+        const id =
+            crypto.randomUUID
+            ? crypto.randomUUID()
+            : (
+                Date.now() +
+                "_" +
+                randomDigits(8)
+            );
+
+
+        const token =
+            generateToken();
+
+
+        const tokenHash =
+            await sha256(token);
+
+
+        const wallet =
+            generateWallet();
+
+
+        const user = {
+
+            username,
+
+            wallet,
+
+            tokenHash,
+
+            balance:0,
+
+            clicks:0,
+
+            createdAt:
+                Date.now()
+
+        };
+
+
+        await firebaseRequest(
+            "users/" + id,
+            "PUT",
+            user
+        );
+
+
+        account = {
+
+            ...user,
+
+            id
+
+        };
+
+
+        setCookie(
+            "doxt_session",
+            token
+        );
+
+
+        document.getElementById(
+            "newToken"
+        ).textContent =
+            token;
+
+
+        document.getElementById(
+            "registerForm"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "loginForm"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "tokenBox"
+        ).style.display = "block";
+
+
+        showLoading(false);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showLoading(false);
+
+        showToast(
+            error.message ||
+            "Ошибка регистрации"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CONTINUE REGISTER
+========================================================= */
+
+async function continueAfterRegister(){
+
+    document.getElementById(
+        "tokenBox"
+    ).style.display = "none";
+
+
+    await openBank();
+
+}
+
+
+/* =========================================================
+   LOGIN BY TOKEN
+========================================================= */
+
+async function loginByToken(){
+
+    const token =
+        document.getElementById(
+            "loginToken"
+        )
+        .value
+        .trim();
+
+
+    if(!token){
+
+        showToast(
+            "Введите токен"
+        );
+
+        return;
+
+    }
+
+
+    showLoading(
+        true,
+        "Проверка токена..."
+    );
+
+
+    try{
+
+        const hash =
+            await sha256(token);
+
+
+        const users =
+            await firebaseRequest(
+                "users"
+            );
+
+
+        let found = null;
+
+
+        if(users){
+
+            for(
+                const id in users
+            ){
+
+                const user =
+                    users[id];
+
+
+                if(
+                    user.tokenHash === hash
+                ){
+
+                    found = {
+
+                        ...user,
+
+                        id
+
+                    };
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        if(!found){
+
+            throw new Error(
+                "Неверный токен"
+            );
+
+        }
+
+
+        setCookie(
+            "doxt_session",
+            token
+        );
+
+
+        account = found;
+
+
+        await openBank();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showLoading(false);
+
+        showToast(
+            error.message ||
+            "Ошибка входа"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RESTORE SESSION
+========================================================= */
+
+async function restoreSession(){
+
+    const token =
+        getCookie(
+            "doxt_session"
+        );
+
+
+    if(!token) return;
+
+
+    try{
+
+        const hash =
+            await sha256(token);
+
+
+        const users =
+            await firebaseRequest(
+                "users"
+            );
+
+
+        if(!users) return;
+
+
+        for(
+            const id in users
+        ){
+
+            const user =
+                users[id];
+
+
+            if(
+                user.tokenHash === hash
+            ){
+
+                account = {
+
+                    ...user,
+
+                    id
+
+                };
+
+
+                await openBank();
+
+                return;
+
+            }
+
+        }
+
+
+    }catch(error){
+
+        console.error(
+            "Session restore:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   OPEN BANK
+========================================================= */
+
+async function openBank(){
+
+    showLoading(
+        true,
+        "Загрузка банка..."
+    );
+
+
+    try{
+
+        await loadFreshAccount();
+
+
+        document.getElementById(
+            "authScreen"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "app"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "welcomeName"
+        ).textContent =
+            account.username;
+
+
+        updateBalanceUI();
+
+
+        clickCount =
+            Number(
+                account.clicks || 0
+            );
+
+
+        clickCountEl();
+
+
+        await loadTransactions();
+
+
+        startRealtimeUpdates();
+
+
+        showLoading(false);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        showLoading(false);
+
+        showToast(
+            "Не удалось загрузить аккаунт"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD ACCOUNT
+========================================================= */
+
+async function loadFreshAccount(){
+
+    if(!account?.id) return;
+
+
+    const fresh =
+        await firebaseRequest(
+            "users/" +
+            account.id
+        );
+
+
+    if(!fresh){
+
+        logout();
+
+        return;
+
+    }
+
+
+    account = {
+
+        ...fresh,
+
+        id:account.id
+
+    };
+
+
+    clickCount =
+        Number(
+            account.clicks || 0
+        );
+
+}
+
+
+/* =========================================================
+   UPDATE BALANCE UI
+========================================================= */
+
+function updateBalanceUI(){
+
+    if(!account) return;
+
+
+    const balance =
+        Number(
+            account.balance || 0
+        );
+
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+        balance.toLocaleString(
+            "ru-RU"
+        ) +
+        " DOXT";
+
+
+    document.getElementById(
+        "balanceStat"
+    ).textContent =
+        balance.toLocaleString(
+            "ru-RU"
+        ) +
+        " DOXT";
+
+
+    document.getElementById(
+        "clickerBalance"
+    ).textContent =
+        balance.toLocaleString(
+            "ru-RU"
+        ) +
+        " DOXT";
+
+
+    document.getElementById(
+        "transferBalance"
+    ).textContent =
+        balance.toLocaleString(
+            "ru-RU"
+        ) +
+        " DOXT";
+
+
+    document.getElementById(
+        "walletAddress"
+    ).textContent =
+        account.wallet ||
+        "Адрес не найден";
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        account.username ||
+        "Пользователь";
+
+
+    /*
+     * Для виртуальной карты используем
+     * последние цифры кошелька.
+     */
+
+    if(account.wallet){
+
+        const w =
+            String(
+                account.wallet
+            );
+
+
+        document.getElementById(
+            "cardNumber"
+        ).textContent =
+            w.substring(0,4) +
+            " " +
+            w.substring(4,8) +
+            " " +
+            w.substring(8,12) +
+            " ••••";
+
+    }
+
+}
+
+
+/* =========================================================
+   CLICK COUNT UI
+========================================================= */
+
+function clickCountEl(){
+
+    const value =
+        Number(
+            clickCount || 0
+        );
+
+
+    document.getElementById(
+        "clickStat"
+    ).textContent =
+        value.toLocaleString(
+            "ru-RU"
+        );
+
+
+    document.getElementById(
+        "clickerTotal"
+    ).textContent =
+        value.toLocaleString(
+            "ru-RU"
+        );
+
+}
+
+
+/* =========================================================
+   CLICKER
+========================================================= */
+
+function clickDOXT(){
+
+    if(!account) return;
+
+
+    /*
+     * Локально сразу показываем +1.
+     */
+
+    account.balance =
+        Number(
+            account.balance || 0
+        ) + 1;
+
+
+    clickCount++;
+
+
+    account.clicks =
+        clickCount;
+
+
+    /*
+     * Добавляем к очереди.
+     */
+
+    clickerPending++;
+
+
+    /*
+     * Пока пользователь кликает,
+     * realtime refresh не должен
+     * вернуть старый Firebase balance.
+     */
+
+    clickerWaiting = true;
+
+
+    updateBalanceUI();
+
+    clickCountEl();
+
+
+    const status =
+        document.getElementById(
+            "clickerStatus"
+        );
+
+
+    status.textContent =
+        "Клики пока не сохранены...";
+
+
+    /*
+     * Ждём 1 секунду после последнего клика.
+     */
+
+    clearTimeout(
+        clickSaveTimer
+    );
+
+
+    clickSaveTimer =
+        setTimeout(
+            () => {
+
+                clickerWaiting = false;
+
+                status.textContent =
+                    "Сохранение...";
+
+                saveClickerState();
+
+            },
+            1000
+        );
+
+}
+
+
+/* =========================================================
+   SAVE CLICKER
+========================================================= */
+
+async function saveClickerState(){
+
+    if(!account) return;
+
+    if(clickerSaving) return;
+
+    if(clickerPending <= 0) return;
+
+
+    clickerSaving = true;
+
+
+    /*
+     * ВАЖНО:
+     *
+     * Сразу забираем текущую очередь.
+     *
+     * Если во время запроса пользователь
+     * нажмёт кнопку ещё раз, новый клик
+     * попадёт уже в новую очередь и
+     * не будет потерян.
+     */
+
+    const pending =
+        clickerPending;
+
+
+    clickerPending = 0;
+
+
+    try{
+
+        const serverUser =
+            await firebaseRequest(
+                "users/" +
+                account.id
+            );
+
+
+        if(!serverUser){
+
+            throw new Error(
+                "Пользователь не найден"
+            );
+
+        }
+
+
+        const newBalance =
+            Number(
+                serverUser.balance || 0
+            ) +
+            pending;
+
+
+        const newClicks =
+            Number(
+                serverUser.clicks || 0
+            ) +
+            pending;
+
+
+        await firebaseRequest(
+            "users/" +
+            account.id,
+            "PATCH",
+            {
+
+                balance:newBalance,
+
+                clicks:newClicks
+
+            }
+        );
+
+
+        /*
+         * Обновляем локальное состояние
+         * только после успешного сохранения.
+         */
+
+        account.balance =
+            newBalance;
+
+
+        account.clicks =
+            newClicks;
+
+
+        clickCount =
+            newClicks;
+
+
+        updateBalanceUI();
+
+        clickCountEl();
+
+
+        document.getElementById(
+            "clickerStatus"
+        ).textContent =
+            "Сохранено";
+
+
+    }catch(error){
+
+        console.error(
+            "Clicker save:",
+            error
+        );
+
+
+        /*
+         * Возвращаем несохранённые клики
+         * обратно в очередь.
+         */
+
+        clickerPending +=
+            pending;
+
+
+        document.getElementById(
+            "clickerStatus"
+        ).textContent =
+            "Ошибка сохранения";
+
+
+        showToast(
+            "Не удалось сохранить клики"
+        );
+
+
+    }finally{
+
+        clickerSaving = false;
+
+
+        /*
+         * Если во время сохранения
+         * появились новые клики —
+         * ждём новую паузу.
+         */
+
+        if(
+            clickerPending > 0
+        ){
+
+            clearTimeout(
+                clickSaveTimer
+            );
+
+
+            clickerWaiting = true;
+
+
+            clickSaveTimer =
+                setTimeout(
+                    () => {
+
+                        clickerWaiting =
+                            false;
+
+                        saveClickerState();
+
+                    },
+                    1000
+                );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   REALTIME
+========================================================= */
+
+function startRealtimeUpdates(){
+
+    stopRealtimeUpdates();
+
+
+    realtimeTimer =
+        setInterval(
+            async () => {
+
+                await refreshBankData();
+
+            },
+            3000
+        );
+
+}
+
+
+function stopRealtimeUpdates(){
+
+    if(realtimeTimer){
+
+        clearInterval(
+            realtimeTimer
+        );
+
+        realtimeTimer = null;
+
+    }
+
+}
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+async function refreshBankData(){
+
+    if(!account?.id) return;
+
+
+    /*
+     * Нельзя обновлять локальный баланс
+     * из Firebase, пока кликер имеет
+     * несохранённые изменения.
+     */
+
+    if(
+        clickerPending > 0 ||
+        clickerSaving ||
+        clickerWaiting
+    ){
+
+        return;
+
+    }
+
+
+    try{
+
+        const fresh =
+            await firebaseRequest(
+                "users/" +
+                account.id
+            );
+
+
+        if(!fresh) return;
+
+
+        account = {
+
+            ...fresh,
+
+            id:account.id
+
+        };
+
+
+        clickCount =
+            Number(
+                account.clicks || 0
+            );
+
+
+        updateBalanceUI();
+
+        clickCountEl();
+
+
+        await loadTransactions();
+
+
+    }catch(error){
+
+        console.error(
+            "Realtime refresh:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SEND MONEY
+========================================================= */
+
+async function sendMoney(){
+
+    if(!account) return;
+
+
+    const wallet =
+        document.getElementById(
+            "receiverWallet"
+        )
+        .value
+        .trim();
+
+
+    const amount =
+        Number(
+            document.getElementById(
+                "transferAmount"
+            ).value
+        );
+
+
+    if(!/^\d{12}$/.test(wallet)){
+
+        showToast(
+            "Введите правильный 12-значный адрес"
+        );
+
+        return;
+
+    }
+
+
+    if(!Number.isFinite(amount) ||
+       amount <= 0 ||
+       !Number.isInteger(amount)){
+
+        showToast(
+            "Введите целую сумму"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        amount >
+        Number(account.balance || 0)
+    ){
+
+        showToast(
+            "Недостаточно DOXT"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        wallet === account.wallet
+    ){
+
+        showToast(
+            "Нельзя отправить DOXT самому себе"
+        );
+
+        return;
+
+    }
+
+
+    showLoading(
+        true,
+        "Поиск получателя..."
+    );
+
+
+    try{
+
+        /*
+         * Ищем получателя.
+         */
+
+        const users =
+            await firebaseRequest(
+                "users"
+            );
+
+
+        let receiver = null;
+
+
+        if(users){
+
+            for(
+                const id in users
+            ){
+
+                if(
+                    users[id].wallet === wallet
+                ){
+
+                    receiver = {
+
+                        ...users[id],
+
+                        id
+
+                    };
+
+                    break;
+
+                }
+
+            }
+
+        }
+
+
+        if(!receiver){
+
+            throw new Error(
+                "Получатель не найден"
+            );
+
+        }
+
+
+        /*
+         * Получаем актуальный аккаунт
+         * отправителя.
+         */
+
+        const sender =
+            await firebaseRequest(
+                "users/" +
+                account.id
+            );
+
+
+        if(!sender){
+
+            throw new Error(
+                "Отправитель не найден"
+            );
+
+        }
+
+
+        if(
+            Number(sender.balance || 0)
+            < amount
+        ){
+
+            throw new Error(
+                "Недостаточно DOXT"
+            );
+
+        }
+
+
+        const txId =
+            Date.now() +
+            "_" +
+            randomDigits(6);
+
+
+        const now =
+            Date.now();
+
+
+        /*
+         * Входящая операция.
+         *
+         * Здесь сохраняем имя отправителя
+         * и его кошелёк.
+         */
+
+        const incoming = {
+
+            type:"in",
+
+            title:"Получение DOXT",
+
+            amount:amount,
+
+            from:
+                sender.wallet,
+
+            fromUsername:
+                sender.username,
+
+            to:
+                receiver.wallet,
+
+            timestamp:now
+
+        };
+
+
+        /*
+         * Исходящая операция.
+         */
+
+        const outgoing = {
+
+            type:"out",
+
+            title:"Перевод DOXT",
+
+            amount:amount,
+
+            from:
+                sender.wallet,
+
+            fromUsername:
+                sender.username,
+
+            to:
+                receiver.wallet,
+
+            toUsername:
+                receiver.username,
+
+            timestamp:now
+
+        };
+
+
+        /*
+         * Используем multi-location update.
+         */
+
+        const updates = {};
+
+
+        updates[
+            "users/" +
+            sender.id +
+            "/balance"
+        ] =
+            Number(
+                sender.balance || 0
+            ) -
+            amount;
+
+
+        updates[
+            "users/" +
+            receiver.id +
+            "/balance"
+        ] =
+            Number(
+                receiver.balance || 0
+            ) +
+            amount;
+
+
+        updates[
+            "transactions/" +
+            sender.id +
+            "/" +
+            txId +
+            "_out"
+        ] =
+            outgoing;
+
+
+        updates[
+            "transactions/" +
+            receiver.id +
+            "/" +
+            txId +
+            "_in"
+        ] =
+            incoming;
+
+
+        await firebaseRequest(
+            "",
+            "PATCH",
+            updates
+        );
+
+
+        /*
+         * Обновляем локальный баланс.
+         */
+
+        account.balance =
+            Number(
+                sender.balance || 0
+            ) -
+            amount;
+
+
+        updateBalanceUI();
+
+
+        document.getElementById(
+            "receiverWallet"
+        ).value = "";
+
+
+        document.getElementById(
+            "transferAmount"
+        ).value = "";
+
+
+        await loadTransactions();
+
+
+        showLoading(false);
+
+
+        showToast(
+            "Перевод выполнен"
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Transfer:",
+            error
+        );
+
+
+        showLoading(false);
+
+
+        showToast(
+            error.message ||
+            "Ошибка перевода"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TRANSACTION HISTORY
+========================================================= */
+
+async function loadTransactions(){
+
+    if(!account?.id) return;
+
+
+    const container =
+        document.getElementById(
+            "transactions"
+        );
+
+
+    try{
+
+        const data =
+            await firebaseRequest(
+                "transactions/" +
+                account.id
+            );
+
+
+        if(!data){
+
+            container.innerHTML =
+                `<div class="empty">
+                    Операций пока нет
+                 </div>`;
+
+            return;
+
+        }
+
+
+        const list =
+            Object.entries(data)
+            .map(
+                ([id,tx]) => ({
+
+                    id,
+
+                    ...tx
+
+                })
+            )
+            .sort(
+                (a,b) =>
+                    Number(b.timestamp || 0) -
+                    Number(a.timestamp || 0)
+            )
+            .slice(0,30);
+
+
+        if(!list.length){
+
+            container.innerHTML =
+                `<div class="empty">
+                    Операций пока нет
+                 </div>`;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            list
+            .map(
+                tx => {
+
+                    const incoming =
+                        tx.type === "in";
+
+
+                    let sub = "";
+
+
+                    if(incoming){
+
+                        /*
+                         * Новый формат:
+                         *
+                         * От: username · wallet
+                         *
+                         * Старые транзакции тоже
+                         * нормально отображаются.
+                         */
+
+                        const username =
+                            tx.fromUsername ||
+                            "Неизвестный пользователь";
+
+
+                        const wallet =
+                            tx.from ||
+                            "—";
+
+
+                        sub =
+                            "От: " +
+                            escapeHTML(
+                                username
+                            ) +
+                            " · " +
+                            escapeHTML(
+                                wallet
+                            );
+
+                    }else{
+
+                        const username =
+                            tx.toUsername;
+
+
+                        const wallet =
+                            tx.to ||
+                            "—";
+
+
+                        if(username){
+
+                            sub =
+                                "Кому: " +
+                                escapeHTML(
+                                    username
+                                ) +
+                                " · " +
+                                escapeHTML(
+                                    wallet
+                                );
+
+                        }else{
+
+                            sub =
+                                "Кому: " +
+                                escapeHTML(
+                                    wallet
+                                );
+
+                        }
+
+                    }
+
+
+                    const amount =
+                        Number(
+                            tx.amount || 0
+                        );
+
+
+                    const date =
+                        tx.timestamp
+                        ? new Date(
+                            tx.timestamp
+                          )
+                          .toLocaleString(
+                              "ru-RU",
+                              {
+                                  day:"2-digit",
+                                  month:"2-digit",
+                                  year:"numeric",
+                                  hour:"2-digit",
+                                  minute:"2-digit"
+                              }
+                          )
+                        : "—";
+
+
+                    return `
+
+                        <div class="transaction">
+
+                            <div class="txIcon">
+                                ${incoming ? "↓" : "↑"}
+                            </div>
+
+                            <div class="txInfo">
+
+                                <div class="txTitle">
+                                    ${escapeHTML(
+                                        tx.title ||
+                                        (
+                                            incoming
+                                            ? "Получение DOXT"
+                                            : "Перевод DOXT"
+                                        )
+                                    )}
+                                </div>
+
+                                <div class="txSub">
+                                    ${sub}
+                                </div>
+
+                                <div class="txSub">
+                                    ${date}
+                                </div>
+
+                            </div>
+
+                            <div class="txAmount ${incoming ? "in" : "out"}">
+
+                                ${incoming ? "+" : "-"}
+                                ${amount.toLocaleString("ru-RU")}
+                                DOXT
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    }catch(error){
+
+        console.error(
+            "Transactions:",
+            error
+        );
+
+
+        container.innerHTML =
+            `<div class="empty">
+                Не удалось загрузить историю
+             </div>`;
+
+    }
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+function switchPage(
+    page,
+    button
+){
+
+    document
+        .querySelectorAll(
+            ".page"
+        )
+        .forEach(
+            el =>
+                el.classList.remove(
+                    "active"
+                )
+        );
+
+
+    document
+        .querySelectorAll(
+            ".tab"
+        )
+        .forEach(
+            el =>
+                el.classList.remove(
+                    "active"
+                )
+        );
+
+
+    document
+        .getElementById(
+            "page-" + page
+        )
+        .classList.add(
+            "active"
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    if(page === "home"){
+
+        loadTransactions();
+
+    }
+
+}
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+async function copyText(text){
+
+    try{
+
+        await navigator.clipboard.writeText(
+            text
+        );
+
+        showToast(
+            "Скопировано"
+        );
+
+    }catch{
+
+        showToast(
+            "Не удалось скопировать"
+        );
+
+    }
+
+}
+
+
+function copyWallet(){
+
+    if(account?.wallet){
+
+        copyText(
+            account.wallet
+        );
+
+    }
+
+}
+
+
+function copyToken(){
+
+    const token =
+        document.getElementById(
+            "newToken"
+        )
+        .textContent;
+
+
+    if(token){
+
+        copyText(token);
+
+    }
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout(){
+
+    stopRealtimeUpdates();
+
+
+    clearTimeout(
+        clickSaveTimer
+    );
+
+
+    /*
+     * Если были несохранённые клики,
+     * предупреждаем пользователя.
+     */
+
+    if(
+        clickerPending > 0 ||
+        clickerSaving ||
+        clickerWaiting
+    ){
+
+        showToast(
+            "Подождите сохранения кликов"
+        );
+
+        return;
+
+    }
+
+
+    account = null;
+
+    clickCount = 0;
+
+    clickerPending = 0;
+
+    clickerSaving = false;
+
+    clickerWaiting = false;
+
+
+    deleteCookie(
+        "doxt_session"
+    );
+
+
+    document.getElementById(
+        "app"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "authScreen"
+    ).style.display = "flex";
+
+
+    showRegister();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        restoreSession();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
